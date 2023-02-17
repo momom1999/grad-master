@@ -6,6 +6,7 @@ import 'package:grad/core/register/register.dart';
 import 'package:grad/provider/my_provider.dart';
 import 'package:grad/screens/login_view.dart';
 import 'package:grad/screens/provider_home.dart';
+import 'package:grad/welcome_page.dart';
 import 'package:provider/provider.dart';
 
 
@@ -40,9 +41,10 @@ class _MyApplicationState extends State<MyApplication> {
         Register.routeName: (_) => Register(),
         LoginScreen.routeName:(_)=>LoginScreen(),
         ProviderHome.routeName:(_)=>ProviderHome(),
+        WelcomePage.routeName:(_)=>WelcomePage(),
       },
       initialRoute: provider.firebaseUser!=null? HomeScreen.routeName
-      :LoginScreen.routeName);
+      :WelcomePage.routeName);
 
   }
 
