@@ -34,7 +34,7 @@ class _MyApplicationState extends State<MyApplication> {
   Widget build(BuildContext context) {
     var provider=Provider.of<MyProvider>(context);
     return MaterialApp(
-      title: 'Vezeeta',
+      title: 'Paws',
       debugShowCheckedModeBanner: false,
       routes: {
         HomeScreen.routeName: (_) => HomeScreen(),

@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
         elevation: 0,
         title:  Text(
-          selectedCategory==null?'Vezeeta': selectedCategory!.categoryTitle,style:TextStyle(
+          selectedCategory==null?'Paws': selectedCategory!.categoryTitle,style:TextStyle(
           fontSize: 22,fontWeight: FontWeight.w400
         ) ,),
         centerTitle: true,
@@ -114,20 +114,31 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-          ),
+          ), Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: (){
+              setState(() {
+                Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+              Navigator.pop(context);
+              });
+              },
 
-      Row(
-        children: [
-          IconButton(onPressed: (){
-            FirebaseAuth.instance.signOut();
-            Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.logout,size: 30,),
+                  SizedBox(width: 10,),
+                  Text("Log Out",style: Theme.of(context).textTheme.headline6!.copyWith(
+                    fontWeight: FontWeight.bold,color: Colors.black,)
+                  )
+                ],
+              ),
 
-          }, icon: Icon(Icons.logout,),), Text("Logout",style: Theme.of(context).textTheme.headline6!.copyWith(
-            fontWeight: FontWeight.bold,color: Colors.black,)
+              ),
+            ),
 
-          )
-        ],
-      ),
+
         ],
       )
 

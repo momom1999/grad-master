@@ -22,7 +22,7 @@ HomeViewModel> implements HomeNavigator{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:Text("Chat"),),
+        title:Text("Paws"),),
         body: Container(),
 
     );
