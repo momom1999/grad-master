@@ -71,10 +71,6 @@ class _HomeScreenState extends State<HomeScreen> {
             color: Colors.teal,
             child: Text('Vezeeta',style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),
               textAlign: TextAlign.center,),
-
-
-
-
           ),
 
           Padding(
@@ -120,10 +116,8 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: (){
               setState(() {
                 Navigator.pushReplacementNamed(context, LoginScreen.routeName);
-              Navigator.pop(context);
-              });
-              },
 
+              });},
               child: Row(
                 children: [
                   const Icon(

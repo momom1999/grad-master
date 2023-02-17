@@ -11,7 +11,7 @@ class WelcomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor:Colors.teal,title: Text('Paws',),
         centerTitle: true,),
-
+      
       body: Column(
         children: [SizedBox(height: 50,),
           Text('Welcome',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 40),),
