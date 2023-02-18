@@ -8,9 +8,7 @@ abstract class BaseNavigator{
 }
 
 class BaseViewModel<NAV extends BaseNavigator> extends ChangeNotifier{
-
-
-NAV? navigator=null;
+  NAV? navigator=null;
 }
 
 abstract class BaseView<T extends StatefulWidget,
