@@ -39,7 +39,7 @@ class _LoginScreenState extends BaseView<LoginScreen, LoginViewModel>
         Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.teal,
-            title: Text('Vezeeta'),
+            title: Text('Paws'),
             centerTitle: true,
           ),
           body: Padding(

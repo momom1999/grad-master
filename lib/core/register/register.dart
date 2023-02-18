@@ -47,7 +47,7 @@ class _RegisterState extends BaseView<Register, RegisterViewModel>
           Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.teal,
-              title: Text('Vezeeta'),
+              title: Text('Paws'),
               centerTitle: true,
             ),
             body: Padding(
