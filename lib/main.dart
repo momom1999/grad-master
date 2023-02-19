@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:grad/core/service_provider_registration/service_registration.dart';
+import 'package:grad/core/theme.dart';
 import 'package:grad/firebase_options.dart';
 import 'package:grad/home.dart';
 import 'package:grad/core/register/register.dart';
@@ -34,7 +35,9 @@ class _MyApplicationState extends State<MyApplication> {
   Widget build(BuildContext context) {
     var provider=Provider.of<MyProvider>(context);
     return MaterialApp(
+      theme: MyTheme.lightTheme,
       title: 'Paws',
+
       debugShowCheckedModeBanner: false,
       routes: {
         HomeScreen.routeName: (_) => HomeScreen(),

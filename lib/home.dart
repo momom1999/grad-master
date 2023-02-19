@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:grad/category_list.dart';
+import 'package:grad/core/theme.dart';
 import 'package:grad/main.dart';
 import 'package:grad/screens/login_view.dart';
 import 'category_grid_view.dart';
@@ -47,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar( backgroundColor: Colors.teal,
+      appBar: AppBar(
 
         elevation: 0,
         title:  Text(
@@ -55,21 +56,25 @@ class _HomeScreenState extends State<HomeScreen> {
           fontSize: 22,fontWeight: FontWeight.w400
         ) ,),
         centerTitle: true,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(25),
-            bottomRight: Radius.circular(25),
-          )
-        ),
+
       ),
-      drawer: Drawer(  child: Column(
+      drawer: Drawer(  child: new Stack(
+          children: <Widget>[
+      new Container(
+      decoration: new BoxDecoration(
+      image: new DecorationImage(
+      image: new AssetImage("assets/images/background.png"),
+        fit: BoxFit.cover,
+      ),
+    ),
+    ),Column(
         children: [
           Container(
             padding: const EdgeInsets.symmetric(vertical: 45),
             width: double.infinity,
             height: 120,
-            color: Colors.teal,
-            child: Text('Vezeeta',style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),
+            color: MyTheme.lightPrimary,
+            child: Text('Paws',style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),
               textAlign: TextAlign.center,),
           ),
 
@@ -88,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Icons.menu,size: 30,),
                     SizedBox(width: 10,),
                     Text("Categories",style: Theme.of(context).textTheme.headline6!.copyWith(
-                      fontWeight: FontWeight.bold,color: Colors.black,)
+                      fontWeight: FontWeight.bold,color: Color(0xFF000A32),)
                     )
                   ],
                 ),
@@ -105,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Icons.settings,size: 30,),
                   SizedBox(width: 10,),
                   Text("Settings",style: Theme.of(context).textTheme.headline6!.copyWith(
-                    fontWeight: FontWeight.bold,color: Colors.black,)
+                    fontWeight: FontWeight.bold,color: Color(0xFF000A32),)
                   )
                 ],
               ),
@@ -124,28 +129,34 @@ class _HomeScreenState extends State<HomeScreen> {
                     Icons.logout,size: 30,),
                   SizedBox(width: 10,),
                   Text("Log Out",style: Theme.of(context).textTheme.headline6!.copyWith(
-                    fontWeight: FontWeight.bold,color: Colors.black,)
+                    fontWeight: FontWeight.bold,color: Color(0xFF000A32),)
                   )
                 ],
               ),
 
               ),
             ),
+  ]
+              )]
+              )
+              ),
 
 
-        ],
-      )
-
-      ),
 
 
-      body: selectedCategory==null? Container(
+      body:
+
+      selectedCategory==null? Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/background.png"),
+                  fit: BoxFit.cover,)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             SizedBox(height: 30,),
             const Text(
-              "Pick your category",style:TextStyle(fontSize:26,color: Colors.teal)
+              "Pick your category",textAlign:TextAlign.center,style:TextStyle(fontSize:26,fontWeight:FontWeight.w500,color: Color(0xFF000A32))
               ),
 SizedBox(height: 30,),
             Expanded(

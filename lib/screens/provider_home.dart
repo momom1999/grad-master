@@ -20,8 +20,7 @@ class _ProviderHomeState extends State<ProviderHome> {
           children: [
         Scaffold(
         appBar: AppBar(
-        backgroundColor: Colors.teal,
-          title: Text('Vezeeta'),
+          title: Text('Paws'),
           centerTitle: true,
         ),
         body: Padding(
