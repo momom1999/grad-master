@@ -5,6 +5,7 @@ import 'package:grad/core/service_provider_registration/service_provider_navigat
 import 'package:grad/core/service_provider_registration/service_provider_register_viewmodel.dart';
 import 'package:grad/model/my_user.dart';
 import 'package:grad/model/service_provider.dart';
+import 'package:grad/screens/home/login_sevice_provider/login_serviceprovider.dart';
 import 'package:grad/screens/login_view.dart';
 import 'package:grad/screens/provider_home.dart';
 import 'package:provider/provider.dart';
@@ -192,7 +193,7 @@ class _ServiceProviderRegistrationState extends BaseView<ServiceProviderRegister
                       ),
                       TextButton(onPressed: () {
                         Navigator.pushReplacementNamed(context,
-                            LoginScreen.routeName);
+                            LoginServiceProvider.routeName);
                       }, child: Text("I Have An Account",style: TextStyle(fontSize:18,color: MyTheme.lightPrimary)))
                     ],
                   ),
