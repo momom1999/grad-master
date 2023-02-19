@@ -15,6 +15,13 @@ File?image;
   Future pickImage()async{
     final image= await ImagePicker().pickImage(source: ImageSource.gallery);
 
+
+
+
+
+
+
+
     if(image==null)return;
     final imageTemporary= File(image.path);
     this.image=imageTemporary;
