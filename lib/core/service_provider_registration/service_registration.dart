@@ -10,6 +10,7 @@ import 'package:grad/screens/provider_home.dart';
 import 'package:provider/provider.dart';
 
 import '../../../provider/my_provider.dart';
+import '../../home.dart';
 
 class ServiceProviderRegister extends StatefulWidget {
   static const String routeName = 'ServiceProviderRegister';
@@ -170,7 +171,7 @@ class _ServiceProviderRegistrationState extends BaseView<ServiceProviderRegister
                         height: 5,
                       ),
                       ElevatedButton(
-                          onPressed: () {Navigator.pushReplacementNamed(context, ProviderHome.routeName);
+                          onPressed: () {
                             ValidateForm();
                           },
                           child: Text(
@@ -210,6 +211,8 @@ class _ServiceProviderRegistrationState extends BaseView<ServiceProviderRegister
 
   @override
   void goToHome(ServiceProvider serviceProvide) {
+    var provider=Provider.of<MyProvider>(context,listen: false);
+    Navigator.pushReplacementNamed(context, HomeScreen.routeName);
 
   }
 
