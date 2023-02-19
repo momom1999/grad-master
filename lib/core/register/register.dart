@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:grad/base.dart';
 import 'package:grad/core/register/register_navigator.dart';
 import 'package:grad/core/register/register_viewmodel.dart';
+import 'package:grad/core/theme.dart';
 import 'package:grad/home.dart';
 import 'package:grad/model/my_user.dart';
 import 'package:grad/screens/login_view.dart';
@@ -45,16 +46,30 @@ class _RegisterState extends BaseView<Register, RegisterViewModel>
       child: Stack(
         children: [
           Scaffold(
+
             appBar: AppBar(
-              backgroundColor: Colors.teal,
+              backgroundColor: MyTheme.lightPrimary,
               title: Text('Paws'),
               centerTitle: true,
             ),
-            body: Padding(
+            body:
+            new Stack(
+              children: <Widget>[
+                new Container(
+                  decoration: new BoxDecoration(
+                    image: new DecorationImage(image: new AssetImage("assets/images/background.png"), fit: BoxFit.cover,),
+                  ),),
+
+            Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
-              child: Form(
+
+
+              child:
+
+              Form(
                 key: formKey,
                 child: SingleChildScrollView(
+
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -64,7 +79,7 @@ class _RegisterState extends BaseView<Register, RegisterViewModel>
                       ),
                       Text(
                         'Registration',
-                        style: TextStyle(
+                        style: TextStyle(color: MyTheme.lightPrimary,
                             fontSize: 17, fontWeight: FontWeight.w500),
                       ),
                       SizedBox(
@@ -83,10 +98,10 @@ class _RegisterState extends BaseView<Register, RegisterViewModel>
                           hintText: 'First Name',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide(color: Colors.teal)),
+                              borderSide: BorderSide(color: Color(0xFF000A32))),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide(color: Colors.teal)),
+                              borderSide: BorderSide(color: Color(0xFF000A32))),
                         ),
                       ),
                       SizedBox(
@@ -105,10 +120,10 @@ class _RegisterState extends BaseView<Register, RegisterViewModel>
                           hintText: 'Last Name',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide(color: Colors.teal)),
+                              borderSide: BorderSide(color: Color(0xFF000A32))),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide(color: Colors.teal)),
+                              borderSide: BorderSide(color: Color(0xFF000A32))),
                         ),
                       ),
                       SizedBox(
@@ -133,10 +148,10 @@ class _RegisterState extends BaseView<Register, RegisterViewModel>
                           hintText: 'Email',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide(color: Colors.teal)),
+                              borderSide: BorderSide(color: Color(0xFF000A32))),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide(color: Colors.teal)),
+                              borderSide: BorderSide(color: Color(0xFF000A32))),
                         ),
                       ),
                       SizedBox(
@@ -156,10 +171,10 @@ class _RegisterState extends BaseView<Register, RegisterViewModel>
                           hintText: 'Password',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide(color: Colors.teal)),
+                              borderSide: BorderSide(color: Color(0xFF000A32))),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide(color: Colors.teal)),
+                              borderSide: BorderSide(color: Color(0xFF000A32))),
                         ),
                       ),
                       SizedBox(
@@ -181,10 +196,10 @@ class _RegisterState extends BaseView<Register, RegisterViewModel>
                           hintText: 'Password Confirmation',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide(color: Colors.teal)),
+                              borderSide: BorderSide(color: Color(0xFF000A32))),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide(color: Colors.teal)),
+                              borderSide: BorderSide(color: Color(0xFF000A32))),
                         ),
                       ),
                       SizedBox(
@@ -193,24 +208,27 @@ class _RegisterState extends BaseView<Register, RegisterViewModel>
                       ElevatedButton(
                           onPressed: () {
                             ValidateForm();
-                          },
+                          },style: ElevatedButton.styleFrom(primary: Color(0xFF000A32)),
                           child: Text(
                             'Create Account',
-                            style: TextStyle(
+                            style: TextStyle(color: Colors.white,
                               fontSize: 15,
-                            ),)
+                            ),
+                          )
                       ),
                       TextButton(onPressed: (){
                         Navigator.pushReplacementNamed(context, LoginScreen.routeName);
-                      }, child: Text("I Have An Account"))
+                      }, child: Text("I Have An Account",style: TextStyle(fontSize:18,color: MyTheme.lightPrimary),))
                     ],
                   ),
                 ),
               ),
+
             ),
-          ),
-        ],
-      ),
+
+                ]),
+    )]
+    ),
     );
   }
 

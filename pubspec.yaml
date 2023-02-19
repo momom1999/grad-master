@@ -31,6 +31,10 @@ dependencies:
     sdk: flutter
   provider: ^6.0.5
   cloud_firestore: ^4.3.2
+  image_picker: ^0.8.6+2
+  path_provider: ^2.0.12
+
+
 
 
 

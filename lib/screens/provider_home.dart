@@ -1,15 +1,37 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:image_picker/image_picker.dart';
+
+
+
+
 
 class ProviderHome extends StatefulWidget {
   static const String routeName='providerHome';
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+File?image;
+  Future pickImage()async{
+    final image= await ImagePicker().pickImage(source: ImageSource.gallery);
 
+
+
+
+
+
+
+
+    if(image==null)return;
+    final imageTemporary= File(image.path);
+    this.image=imageTemporary;
+  }
   @override
   State<ProviderHome> createState() => _ProviderHomeState();
 }
 
 class _ProviderHomeState extends State<ProviderHome> {
+  final ImagePicker _picker = ImagePicker();
 
 
   @override
@@ -20,8 +42,7 @@ class _ProviderHomeState extends State<ProviderHome> {
           children: [
         Scaffold(
         appBar: AppBar(
-        backgroundColor: Colors.teal,
-          title: Text('Vezeeta'),
+          title: Text('Paws'),
           centerTitle: true,
         ),
         body: Padding(
@@ -95,6 +116,7 @@ class _ProviderHomeState extends State<ProviderHome> {
       SizedBox(
         height: 10,
       ),
+
       TextFormField(
         validator: (text) {
           if (text!.trim() == "") {
@@ -112,7 +134,17 @@ class _ProviderHomeState extends State<ProviderHome> {
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
               borderSide: BorderSide(color: Colors.teal)),
+
         ),
+      ),TextButton(
+          onPressed: () { _picker.pickImage(source: ImageSource.gallery);
+          },style: ElevatedButton.styleFrom(primary: Color(0xFF000A32)),
+          child: Text(
+            'Pick Image',
+            style: TextStyle(color: Colors.white,
+              fontSize: 15,
+            ),
+          )
       ),
 
 

@@ -10,6 +10,8 @@ import 'package:grad/screens/provider_home.dart';
 import 'package:provider/provider.dart';
 
 import '../../../provider/my_provider.dart';
+import '../../home.dart';
+import '../theme.dart';
 
 class ServiceProviderRegister extends StatefulWidget {
   static const String routeName = 'ServiceProviderRegister';
@@ -44,11 +46,20 @@ class _ServiceProviderRegistrationState extends BaseView<ServiceProviderRegister
         children: [
           Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.teal,
+
               title: Text('Paws'),
               centerTitle: true,
             ),
-            body: Padding(
+            body:
+
+            new Stack(
+            children: <Widget>[
+            new Container(
+            decoration: new BoxDecoration(
+            image: new DecorationImage(image: new AssetImage("assets/images/background.png"), fit: BoxFit.cover,),
+            ),),
+
+            Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
               child: Form(
                 key: formKey,
@@ -81,10 +92,10 @@ class _ServiceProviderRegistrationState extends BaseView<ServiceProviderRegister
                           hintText: 'Name',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide(color: Colors.teal)),
+                              borderSide: BorderSide(color: Color(0xFF000A32))),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide(color: Colors.teal)),
+                              borderSide: BorderSide(color: Color(0xFF000A32))),
                         ),
                       ),
 
@@ -110,10 +121,10 @@ class _ServiceProviderRegistrationState extends BaseView<ServiceProviderRegister
                           hintText: 'Email',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide(color: Colors.teal)),
+                              borderSide: BorderSide(color: Color(0xFF000A32))),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide(color: Colors.teal)),
+                              borderSide: BorderSide(color: Color(0xFF000A32))),
                         ),
                       ),
                       SizedBox(
@@ -133,10 +144,10 @@ class _ServiceProviderRegistrationState extends BaseView<ServiceProviderRegister
                           hintText: 'Password',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide(color: Colors.teal)),
+                              borderSide: BorderSide(color: Color(0xFF000A32))),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide(color: Colors.teal)),
+                              borderSide: BorderSide(color: Color(0xFF000A32))),
                         ),
                       ),
                       SizedBox(
@@ -160,19 +171,19 @@ class _ServiceProviderRegistrationState extends BaseView<ServiceProviderRegister
                           hintText: 'Password Confirmation',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide(color: Colors.teal)),
+                              borderSide: BorderSide(color: Color(0xFF000A32))),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide(color: Colors.teal)),
+                              borderSide: BorderSide(color: Color(0xFF000A32))),
                         ),
                       ),
                       SizedBox(
                         height: 5,
                       ),
                       ElevatedButton(
-                          onPressed: () {Navigator.pushReplacementNamed(context, ProviderHome.routeName);
+                          onPressed: () {
                             ValidateForm();
-                          },
+                          },style: ElevatedButton.styleFrom(primary: Color(0xFF000A32)),
                           child: Text(
                             'Create Account',
                             style: TextStyle(
@@ -182,13 +193,13 @@ class _ServiceProviderRegistrationState extends BaseView<ServiceProviderRegister
                       TextButton(onPressed: () {
                         Navigator.pushReplacementNamed(context,
                             LoginScreen.routeName);
-                      }, child: Text("I Have An Account"))
+                      }, child: Text("I Have An Account",style: TextStyle(fontSize:18,color: MyTheme.lightPrimary)))
                     ],
                   ),
                 ),
               ),
             ),
-          ),
+          ],)),
         ],
       ),
     );
@@ -210,6 +221,8 @@ class _ServiceProviderRegistrationState extends BaseView<ServiceProviderRegister
 
   @override
   void goToHome(ServiceProvider serviceProvide) {
+    var provider=Provider.of<MyProvider>(context,listen: false);
+    Navigator.pushReplacementNamed(context, HomeScreen.routeName);
 
   }
 
