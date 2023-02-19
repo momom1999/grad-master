@@ -6,6 +6,7 @@ import 'package:grad/firebase_options.dart';
 import 'package:grad/home.dart';
 import 'package:grad/core/register/register.dart';
 import 'package:grad/provider/my_provider.dart';
+import 'package:grad/screens/home/login_sevice_provider/login_serviceprovider.dart';
 import 'package:grad/screens/login_view.dart';
 import 'package:grad/screens/provider_home.dart';
 import 'package:provider/provider.dart';
@@ -43,6 +44,7 @@ class _MyApplicationState extends State<MyApplication> {
         HomeScreen.routeName: (_) => HomeScreen(),
         Register.routeName: (_) => Register(),
         LoginScreen.routeName:(_)=>LoginScreen(),
+        LoginServiceProvider.routeName:(_)=>LoginServiceProvider(),
         ProviderHome.routeName:(_)=>ProviderHome(),
         ServiceProviderRegister.routeName:(_)=>ServiceProviderRegister(),
       },

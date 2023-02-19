@@ -45,7 +45,16 @@ class _ProviderHomeState extends State<ProviderHome> {
           title: Text('Paws'),
           centerTitle: true,
         ),
-        body: Padding(
+        body:
+
+        new Stack(
+        children: <Widget>[
+        new Container(
+        decoration: new BoxDecoration(
+        image: new DecorationImage(image: new AssetImage("assets/images/background.png"), fit: BoxFit.cover,),
+        ),),
+
+        Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18.0),
     child: Form(
     child: SingleChildScrollView(
@@ -77,10 +86,10 @@ class _ProviderHomeState extends State<ProviderHome> {
     hintText: 'Title',
     border: OutlineInputBorder(
     borderRadius: BorderRadius.circular(16),
-    borderSide: BorderSide(color: Colors.teal)),
+    borderSide: BorderSide(color: Color(0xFF000A32))),
     enabledBorder: OutlineInputBorder(
     borderRadius: BorderRadius.circular(16),
-    borderSide: BorderSide(color: Colors.teal)),
+    borderSide: BorderSide(color: Color(0xFF000A32))),
     ),
     ),
     SizedBox(
@@ -105,10 +114,10 @@ class _ProviderHomeState extends State<ProviderHome> {
     hintText: 'Description',
     border: OutlineInputBorder(
     borderRadius: BorderRadius.circular(16),
-    borderSide: BorderSide(color: Colors.teal)),
+    borderSide: BorderSide(color: Color(0xFF000A32))),
     enabledBorder: OutlineInputBorder(
     borderRadius: BorderRadius.circular(16),
-    borderSide: BorderSide(color: Colors.teal)),
+    borderSide: BorderSide(color: Color(0xFF000A32))),
     ),  maxLines: 10,
       minLines: 3,
     ),
@@ -130,10 +139,10 @@ class _ProviderHomeState extends State<ProviderHome> {
           hintText: 'Image',
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(color: Colors.teal)),
+              borderSide: BorderSide(color: Color(0xFF000A32))),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(color: Colors.teal)),
+              borderSide: BorderSide(color: Color(0xFF000A32))),
 
         ),
       ),TextButton(
@@ -159,7 +168,8 @@ class _ProviderHomeState extends State<ProviderHome> {
 
     ),
         )
-        ),
+  ]
+      )  ),
     ]    )
 
 
