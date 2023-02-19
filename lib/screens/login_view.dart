@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grad/base.dart';
 import 'package:grad/core/register/register.dart';
+import 'package:grad/core/service_provider_registration/service_registration.dart';
 import 'package:grad/model/my_user.dart';
 import 'package:grad/screens/login_navigator.dart';
 import 'package:grad/screens/login_view_model.dart';
@@ -119,14 +120,19 @@ class _LoginScreenState extends BaseView<LoginScreen, LoginViewModel>
                             ValidateForm();
                           },
                           child: Text(
-                            'Login',
+                            'Sing In',
                             style: TextStyle(
                               fontSize: 15,)),
                       ),
                       TextButton(onPressed: (){
                         Navigator.pushReplacementNamed(context, Register.routeName);
-                      }, child: Text("Do not Have An Acoount"))
-                      
+                      }, child: Text("Do not Have An Acoount")),
+
+                      SizedBox(height: 30,),
+                      TextButton(onPressed: (){
+                        Navigator.pushReplacementNamed(context, ServiceProviderRegister.routeName);
+                      }, child: Text("Service Provider")),
+
                     ]),
               ),
             ),
@@ -152,6 +158,8 @@ class _LoginScreenState extends BaseView<LoginScreen, LoginViewModel>
         HomeScreen.routeName);
 
   }
-}
 
-
+  void _navigateToNextScreen(BuildContext context) {
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => Register()));
+  }}
