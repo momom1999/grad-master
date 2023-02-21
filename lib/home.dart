@@ -20,29 +20,31 @@ static const String routeName = 'home';
 
 class _HomeScreenState extends State<HomeScreen> {
 
+
   List<Category>category=[
 
-    Category(categoryID: "pets",
-      categoryImage: "assets/images/body of seb7a.png",
-      categoryTitle: "pets",
-      categoryBackground: const Color.fromRGBO(0, 128, 128, 100) ,
+    Category(categoryID: "clinic",
+      categoryImage: "assets/images/clinic.jpg",
+      categoryTitle: "Clinic",
+      categoryBackground: const Color.fromRGBO(0, 10, 50, 100) ,
     ),
 
 
-  Category(categoryID: "cats",
-  categoryImage: "assets/images/body of seb7a.png",
-  categoryTitle: "pets",
-  categoryBackground: const Color.fromRGBO(0, 128, 128, 100) ,
+  Category(categoryID: "shelter",
+
+  categoryImage: "assets/images/shelter.jpg",
+  categoryTitle: "Shelter",
+  categoryBackground: const Color.fromRGBO(0, 10, 50, 100) ,
   ),
-    Category(categoryID: "woo",
-      categoryImage: "assets/images/body of seb7a.png",
-      categoryTitle: "pets",
-      categoryBackground: const Color.fromRGBO(0, 128, 128, 100)
+    Category(categoryID: "store",
+      categoryImage: "assets/images/store.jpg",
+      categoryTitle: "Store",
+      categoryBackground: const Color.fromRGBO(0, 10, 50, 100)
     ),
-    Category(categoryID: "dogs",
-      categoryImage: "assets/images/body of seb7a.png",
-      categoryTitle: "pets",
-      categoryBackground: const Color.fromRGBO(0, 128, 128, 100) ,
+    Category(categoryID: "tips",
+      categoryImage: "assets/images/tips.jpg",
+      categoryTitle: "Tips",
+      categoryBackground: const Color.fromRGBO(0, 10, 50, 100) ,
     ),];
 
   @override

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:grad/base.dart';
 import 'package:grad/core/service_provider_registration/service_registration.dart';
-import 'package:grad/model/my_user.dart';
 import 'package:grad/model/service_provider.dart';
 import 'package:grad/screens/home/login_sevice_provider/login_serviceprovider_navigator.dart';
 import 'package:grad/screens/home/login_sevice_provider/login_serviceprovider_viewmodel.dart';
-import 'package:grad/screens/login_navigator.dart';
-import 'package:grad/screens/login_view.dart';
+
 import 'package:grad/screens/provider_home.dart';
 import 'package:provider/provider.dart';
 
@@ -34,7 +32,7 @@ class _LoginServiceProviderScreenState extends BaseView<LoginServiceProvider, Lo
   void initState() {
     // TODO: implement initState
     super.initState();
-    viewModel.navigator = this as LoginServiceProviderNavigator?;
+    viewModel.navigator = this ;
   }
 
   @override
@@ -173,7 +171,7 @@ class _LoginServiceProviderScreenState extends BaseView<LoginServiceProvider, Lo
   void goToHome(ServiceProvider serviceProvider) {
     var provider = Provider.of<MyProvider>(context, listen: false);
 
-    Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+    Navigator.pushReplacementNamed(context, ProviderHome.routeName);
   }
 
   void _navigateToNextScreen(BuildContext context) {
