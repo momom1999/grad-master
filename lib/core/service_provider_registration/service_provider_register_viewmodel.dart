@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:grad/DatabaseUtils/database_utils.dart';
 
-import 'package:grad/DatabaseUtils/service_provider_database.dart';
+import 'package:grad/DatabaseUtils/service_provider_database_utils.dart';
 import 'package:grad/base.dart';
 import 'package:grad/core/service_provider_registration/service_provider_navigator.dart';
 import 'package:grad/firebase_error.dart';
@@ -23,8 +24,9 @@ var auth= FirebaseAuth.instance;
         password: password,
       );
       message="Account Created";
-      ServiceProvider serviceProvide= ServiceProvider(id: credential.user?.uid??"", Name: Name, email: email);
-      DataBaseServiceProviderUtils.AddServiceProvideToFirestore(serviceProvide)
+      ServiceProvider serviceProvide= ServiceProvider(id: credential.user?.uid??"",
+          Name: Name, email: email);
+      DataBaseUtils.AddServiceProvideToFirestore(serviceProvide)
           .then((value) {
         navigator!.hideDialog();
         navigator!.goToHome(serviceProvide);

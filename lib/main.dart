@@ -8,7 +8,7 @@ import 'package:grad/core/register/register.dart';
 import 'package:grad/provider/my_provider.dart';
 import 'package:grad/screens/home/login_sevice_provider/login_serviceprovider.dart';
 import 'package:grad/screens/login_view.dart';
-import 'package:grad/screens/provider_home.dart';
+import 'package:grad/screens/home/service_home/provider_home.dart';
 import 'package:provider/provider.dart';
 
 
@@ -19,6 +19,7 @@ void main() async{
   );
   runApp( ChangeNotifierProvider(
       create: (context)=> MyProvider(),
+
       child: MyApplication()));
 }
 
@@ -41,11 +42,11 @@ class _MyApplicationState extends State<MyApplication> {
 
       debugShowCheckedModeBanner: false,
       routes: {
+        ProviderHomeScreen.routeName:(_)=>ProviderHomeScreen(),
         HomeScreen.routeName: (_) => HomeScreen(),
         Register.routeName: (_) => Register(),
         LoginScreen.routeName:(_)=>LoginScreen(),
         LoginServiceProvider.routeName:(_)=>LoginServiceProvider(),
-        ProviderHome.routeName:(_)=>ProviderHome(),
         ServiceProviderRegister.routeName:(_)=>ServiceProviderRegister(),
       },
       initialRoute: provider.firebaseUser!=null? HomeScreen.routeName

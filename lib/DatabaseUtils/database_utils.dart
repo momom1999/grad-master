@@ -2,8 +2,11 @@
 
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
+import 'package:grad/model/updates.dart';
 
 import '../model/my_user.dart';
+import '../model/service_provider.dart';
 
 class DataBaseUtils {
 
@@ -24,7 +27,45 @@ class DataBaseUtils {
     await getUsersCollection().doc(id).get();
 
     var myUser=user.data();
-    return myUser;
+    return myUser;}
+
+  static CollectionReference<Updates> getCategoriesCollection() {
+    return FirebaseFirestore.instance.collection(Updates.COLLECTION_NAME)
+        .withConverter<Updates>(fromFirestore: (snapshot,options)=>
+        Updates.fromJson(snapshot.data()!),
+      toFirestore: (category,options)=>category.toJson(),);}
+
+  static Future<void> AddUpdatesToFirestore(Updates updates){
+    var collection = getCategoriesCollection();
+    var docRef=collection.doc();
+    updates.id=docRef.id;
+    return docRef.set(updates);
 
   }
-}
+
+
+  static CollectionReference<ServiceProvider> getServiceProvideCollection() {
+    return FirebaseFirestore.instance.collection(ServiceProvider.COLLECTION_NAME)
+        .withConverter<ServiceProvider>(fromFirestore: (snapshot,options)=>
+        ServiceProvider.fromJason(snapshot.data()!),
+      toFirestore: (value,options)=>value.toJson(),);
+
+  }
+  static Future<void> AddServiceProvideToFirestore(ServiceProvider serviceProvide){
+
+
+    return getServiceProvideCollection().doc(serviceProvide.id).set(serviceProvide);
+  }
+  static Future <ServiceProvider?> readServiceProviderFromFirestore(String id)async {
+    DocumentSnapshot<ServiceProvider> serviceUser =
+
+    await getServiceProvideCollection().doc(id).get();
+
+    var serviceProvide = serviceUser.data();
+    return serviceProvide;
+  }
+
+
+
+
+  }

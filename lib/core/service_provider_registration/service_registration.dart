@@ -7,7 +7,7 @@ import 'package:grad/model/my_user.dart';
 import 'package:grad/model/service_provider.dart';
 import 'package:grad/screens/home/login_sevice_provider/login_serviceprovider.dart';
 import 'package:grad/screens/login_view.dart';
-import 'package:grad/screens/provider_home.dart';
+import 'package:grad/screens/home/service_home/provider_home.dart';
 import 'package:provider/provider.dart';
 
 import '../../../provider/my_provider.dart';
@@ -223,7 +223,7 @@ class _ServiceProviderRegistrationState extends BaseView<ServiceProviderRegister
   @override
   void goToHome(ServiceProvider serviceProvide) {
     var provider=Provider.of<MyProvider>(context,listen: false);
-    Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+    Navigator.pushReplacementNamed(context, ProviderHomeScreen.routeName);
 
   }
 

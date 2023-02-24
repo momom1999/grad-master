@@ -12,7 +12,8 @@ class BaseViewModel<NAV extends BaseNavigator> extends ChangeNotifier{
 }
 
 abstract class BaseView<T extends StatefulWidget,
-VM extends BaseViewModel>extends State<T>{
+VM extends BaseViewModel>extends State<T>
+implements BaseNavigator {
  late VM viewModel;
 
  VM initViewModel();
