@@ -19,7 +19,7 @@ class LoginServiceProviderViewModel extends BaseViewModel<LoginServiceProviderNa
         password: password,
       );
       message="Login Succesfully";
-      ServiceProvider? serviceProvider= (await DataBaseUtils.readUserFromFirestore(credential.user?.uid??"")) as ServiceProvider?;
+      ServiceProvider? serviceProvider= (await DataBaseUtils.readUserFromFirestore(credential.user?.uid??"")) as ServiceProvider?  ;
 
       if(serviceProvider!=null){
         navigator!.hideDialog();

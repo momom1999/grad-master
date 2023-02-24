@@ -5,7 +5,7 @@ import 'package:grad/model/service_provider.dart';
 import 'package:grad/screens/home/login_sevice_provider/login_serviceprovider_navigator.dart';
 import 'package:grad/screens/home/login_sevice_provider/login_serviceprovider_viewmodel.dart';
 
-import 'package:grad/screens/provider_home.dart';
+import 'package:grad/screens/home/service_home/provider_home.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/theme.dart';
@@ -124,7 +124,7 @@ class _LoginServiceProviderScreenState extends BaseView<LoginServiceProvider, Lo
                             ElevatedButton(
                               onPressed: () {
                                 Navigator.pushReplacementNamed(
-                                    context, ProviderHome.routeName);
+                                    context, ProviderHomeScreen.routeName);
                                 ValidateForm();
                               },
                               style: ElevatedButton.styleFrom(
@@ -171,7 +171,7 @@ class _LoginServiceProviderScreenState extends BaseView<LoginServiceProvider, Lo
   void goToHome(ServiceProvider serviceProvider) {
     var provider = Provider.of<MyProvider>(context, listen: false);
 
-    Navigator.pushReplacementNamed(context, ProviderHome.routeName);
+    Navigator.pushReplacementNamed(context, ProviderHomeScreen.routeName);
   }
 
   void _navigateToNextScreen(BuildContext context) {
