@@ -43,6 +43,12 @@ class DataBaseUtils {
 
   }
 
+  static Future<List<Updates>> readUpdatesFromFirestore()async{
+    QuerySnapshot<Updates> snapUpdates= await getCategoriesCollection().get();
+  return snapUpdates.docs.map((doc) => doc.data()).toList();
+
+  }
+
 
   static CollectionReference<ServiceProvider> getServiceProvideCollection() {
     return FirebaseFirestore.instance.collection(ServiceProvider.COLLECTION_NAME)

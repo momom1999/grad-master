@@ -11,10 +11,10 @@ BaseViewModel<ProviderHomeNavigator>{
       String title,
       String description,
       String catId){
-    Updates updates= Updates(title: title, description: description, catId: catId);
+    Updates updates= Updates(title: title, description: description, catId: catId, imageURL: '');
     
     DataBaseUtils.AddUpdatesToFirestore(updates).then((value){
-     print("Updates Added");
+navigator!.CatogoryCreated();
       }).catchError((error){
 
     });

@@ -14,6 +14,7 @@ static const String routeName = 'home';
 
 
 
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -36,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   categoryImage: "assets/images/shelter.jpg",
   categoryTitle: "Shelter",
-  categoryBackground: const Color.fromRGBO(0, 10, 50, 100) ,
+  categoryBackground: Colors.white,
   ),
     Category(categoryID: "store",
       categoryImage: "assets/images/store.jpg",
