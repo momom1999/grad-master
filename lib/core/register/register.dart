@@ -6,7 +6,7 @@ import 'package:grad/core/register/register_viewmodel.dart';
 import 'package:grad/core/theme.dart';
 import 'package:grad/home.dart';
 import 'package:grad/model/my_user.dart';
-import 'package:grad/screens/login_view.dart';
+import 'package:grad/screens/home/login_client/login_view.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/my_provider.dart';

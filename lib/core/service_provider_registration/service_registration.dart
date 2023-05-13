@@ -6,7 +6,7 @@ import 'package:grad/core/service_provider_registration/service_provider_registe
 import 'package:grad/model/my_user.dart';
 import 'package:grad/model/service_provider.dart';
 import 'package:grad/screens/home/login_sevice_provider/login_serviceprovider.dart';
-import 'package:grad/screens/login_view.dart';
+import 'package:grad/screens/home/login_client/login_view.dart';
 import 'package:grad/screens/home/service_home/provider_home.dart';
 import 'package:provider/provider.dart';
 

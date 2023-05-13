@@ -5,7 +5,7 @@ import 'package:grad/category_list.dart';
 import 'package:grad/core/theme.dart';
 import 'package:grad/main.dart';
 import 'package:grad/model/clinic%20category.dart';
-import 'package:grad/screens/login_view.dart';
+import 'package:grad/screens/home/login_client/login_view.dart';
 import 'category_grid_view.dart';
 
 class HomeScreen extends StatefulWidget {

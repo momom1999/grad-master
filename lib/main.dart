@@ -8,7 +8,7 @@ import 'package:grad/core/register/register.dart';
 import 'package:grad/provider/my_provider.dart';
 import 'package:grad/screens/home/login_sevice_provider/login_serviceprovider.dart';
 import 'package:grad/screens/home/service_home/thanks.dart';
-import 'package:grad/screens/login_view.dart';
+import 'package:grad/screens/home/login_client/login_view.dart';
 import 'package:grad/screens/home/service_home/provider_home.dart';
 import 'package:provider/provider.dart';
 
