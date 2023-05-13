@@ -3,13 +3,13 @@ import 'package:grad/base.dart';
 import 'package:grad/core/register/register.dart';
 import 'package:grad/core/service_provider_registration/service_registration.dart';
 import 'package:grad/model/my_user.dart';
-import 'package:grad/screens/login_navigator.dart';
-import 'package:grad/screens/login_view_model.dart';
+import 'package:grad/screens/home/login_client/login_navigator.dart';
+import 'package:grad/screens/home/login_client/login_view_model.dart';
 import 'package:provider/provider.dart';
 
-import '../core/theme.dart';
-import '../home.dart';
-import '../provider/my_provider.dart';
+import '../../../core/theme.dart';
+import '../../../home.dart';
+import '../../../provider/my_provider.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = 'login';
@@ -174,6 +174,9 @@ class _LoginScreenState extends BaseView<LoginScreen, LoginViewModel>
   LoginViewModel initViewModel() {
     return LoginViewModel();
   }
+
+
+
 
   @override
   void goToHome(MyUser myUser) {

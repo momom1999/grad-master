@@ -3,22 +3,19 @@ import 'package:grad/base.dart';
 import 'package:grad/model/updates.dart';
 import 'package:grad/screens/home/service_home/provider_navigator.dart';
 
-class ProviderHomeViewModel extends
-BaseViewModel<ProviderHomeNavigator>{
+class ProviderHomeViewModel extends BaseViewModel<ProviderHomeNavigator> {
+  void AddUptadesToDB(String title, String description, String catId,
+      String link, String phone, String imageURL) {
+    Updates updates = Updates(
+        title: title,
+        description: description,
+        catId: catId,
+        link: link,
+        phone: phone,
+        imageURL: imageURL);
 
-  
-  void AddUptadesToDB(
-      String title,
-      String description,
-      String catId){
-    Updates updates= Updates(title: title, description: description, catId: catId);
-    
-    DataBaseUtils.AddUpdatesToFirestore(updates).then((value){
-     print("Updates Added");
-      }).catchError((error){
-
-    });
+    DataBaseUtils.AddUpdatesToFirestore(updates).then((value) {
+      navigator!.CatogoryCreated();
+    }).catchError((error) {});
   }
-  
-  
 }

@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:grad/DatabaseUtils/database_utils.dart';
 
-import 'package:grad/DatabaseUtils/service_provider_database_utils.dart';
 import 'package:grad/base.dart';
 import 'package:grad/core/service_provider_registration/service_provider_navigator.dart';
 import 'package:grad/firebase_error.dart';

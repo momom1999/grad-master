@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:grad/database/supplier_provider.dart';
 
 class ServiceProvider{
   static const String COLLECTION_NAME="ServiceProviderUser";

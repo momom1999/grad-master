@@ -43,6 +43,12 @@ class DataBaseUtils {
 
   }
 
+  static Future<List<Updates>> readUpdatesFromFirestore()async{
+    QuerySnapshot<Updates> snapUpdates= await getCategoriesCollection().get();
+  return snapUpdates.docs.map((doc) => doc.data()).toList();
+
+  }
+
 
   static CollectionReference<ServiceProvider> getServiceProvideCollection() {
     return FirebaseFirestore.instance.collection(ServiceProvider.COLLECTION_NAME)
@@ -66,6 +72,32 @@ class DataBaseUtils {
   }
 
 
-
+ // static Future<List<Updates>>getClinicUpdates(){
+   // var resullt =  getCategoriesCollection()
+     //   .where('catId',isEqualTo: 'clinic')
+       // .get();
 
   }
+  //static Future<List<Updates>>getShelterpdates(){
+    //var resullt =  getCategoriesCollection()
+      //  .where('catId',isEqualTo: 'shelter')
+        //.get();}
+
+  //static Future<List<Updates>>getStoreUpdates()async{
+    //var resullt =  getCategoriesCollection()
+      //  .where('catId',isEqualTo: 'store')
+   //.get();
+//}
+
+
+
+
+
+
+
+
+
+  //}
+
+
+

@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class ServiceProviderCategories{
   static String clinicId="clinic";
   static String storeId="store";

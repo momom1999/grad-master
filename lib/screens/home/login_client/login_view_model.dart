@@ -2,9 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:grad/DatabaseUtils/database_utils.dart';
 import 'package:grad/base.dart';
 import 'package:grad/model/my_user.dart';
-import 'package:grad/screens/login_navigator.dart';
+import 'package:grad/screens/home/login_client/login_navigator.dart';
 
-import '../firebase_error.dart';
+import '../../../firebase_error.dart';
 
 class LoginViewModel extends BaseViewModel<LoginNavigator> {
   var auth = FirebaseAuth.instance;

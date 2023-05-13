@@ -23,7 +23,7 @@ CategoryGridView({required this.category,required this.index,required this.onCli
           margin: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             color: category.categoryBackground,
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topRight: Radius.circular(20),
               topLeft: Radius.circular(20),
               bottomLeft:Radius.circular(20) ,
