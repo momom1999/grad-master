@@ -175,6 +175,9 @@ class _LoginScreenState extends BaseView<LoginScreen, LoginViewModel>
     return LoginViewModel();
   }
 
+
+
+
   @override
   void goToHome(MyUser myUser) {
     var provider = Provider.of<MyProvider>(context, listen: false);

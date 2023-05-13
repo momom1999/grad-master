@@ -72,6 +72,32 @@ class DataBaseUtils {
   }
 
 
-
+ // static Future<List<Updates>>getClinicUpdates(){
+   // var resullt =  getCategoriesCollection()
+     //   .where('catId',isEqualTo: 'clinic')
+       // .get();
 
   }
+  //static Future<List<Updates>>getShelterpdates(){
+    //var resullt =  getCategoriesCollection()
+      //  .where('catId',isEqualTo: 'shelter')
+        //.get();}
+
+  //static Future<List<Updates>>getStoreUpdates()async{
+    //var resullt =  getCategoriesCollection()
+      //  .where('catId',isEqualTo: 'store')
+   //.get();
+//}
+
+
+
+
+
+
+
+
+
+  //}
+
+
+

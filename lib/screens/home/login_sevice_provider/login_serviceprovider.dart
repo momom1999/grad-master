@@ -123,8 +123,6 @@ class _LoginServiceProviderScreenState extends BaseView<LoginServiceProvider, Lo
                             ),
                             ElevatedButton(
                               onPressed: () {
-                                Navigator.pushReplacementNamed(
-                                    context, ProviderHomeScreen.routeName);
                                 ValidateForm();
                               },
                               style: ElevatedButton.styleFrom(
@@ -166,6 +164,10 @@ class _LoginServiceProviderScreenState extends BaseView<LoginServiceProvider, Lo
   LoginServiceProviderViewModel initViewModel() {
     return LoginServiceProviderViewModel();
   }
+
+
+
+
 
   @override
   void goToHome(ServiceProvider serviceProvider) {
