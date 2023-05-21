@@ -12,23 +12,16 @@ import 'package:grad/screens/home/login_client/login_view.dart';
 import 'package:grad/screens/home/service_home/provider_home.dart';
 import 'package:provider/provider.dart';
 
-
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp( ChangeNotifierProvider(
-      create: (context)=> MyProvider(),
-
-      child: MyApplication()));
+  runApp(ChangeNotifierProvider(
+      create: (context) => MyProvider(), child: MyApplication()));
 }
 
-class MyApplication extends StatefulWidget{
-
-
-
-
+class MyApplication extends StatefulWidget {
   @override
   State<MyApplication> createState() => _MyApplicationState();
 }
@@ -36,25 +29,23 @@ class MyApplication extends StatefulWidget{
 class _MyApplicationState extends State<MyApplication> {
   @override
   Widget build(BuildContext context) {
-    var provider=Provider.of<MyProvider>(context);
+    var provider = Provider.of<MyProvider>(context);
     return MaterialApp(
-      theme: MyTheme.lightTheme,
-      title: 'Paws',
+        theme: MyTheme.lightTheme,
+        title: 'Paws',
+        debugShowCheckedModeBanner: false,
+        routes: {
+          ProviderHomeScreen.routeName: (_) => ProviderHomeScreen(),
+          HomeScreen.routeName: (_) => HomeScreen(),
+          Register.routeName: (_) => Register(),
+          LoginScreen.routeName: (_) => LoginScreen(),
+          LoginServiceProvider.routeName: (_) => LoginServiceProvider(),
+          ServiceProviderRegister.routeName: (_) => ServiceProviderRegister(),
+          Thanks.routeName: (_) => Thanks(),
 
-      debugShowCheckedModeBanner: false,
-      routes: {
-        ProviderHomeScreen.routeName:(_)=>ProviderHomeScreen(),
-        HomeScreen.routeName: (_) => HomeScreen(),
-        Register.routeName: (_) => Register(),
-        LoginScreen.routeName:(_)=>LoginScreen(),
-        LoginServiceProvider.routeName:(_)=>LoginServiceProvider(),
-        ServiceProviderRegister.routeName:(_)=>ServiceProviderRegister(),
-        Thanks.routeName:(_)=>Thanks(),
-      },
-      initialRoute: provider.firebaseUser!=null? HomeScreen.routeName
-      :LoginScreen.routeName);
-
-
+        },
+        initialRoute: provider.firebaseUser != null
+            ? HomeScreen.routeName
+            : LoginScreen.routeName);
   }
-
 }

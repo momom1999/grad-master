@@ -6,6 +6,7 @@
 // import '../category_grid_view.dart';
 // import '../category_list.dart';
 //
+//
 // class CategoryList extends StatefulWidget {
 //   Category category;
 //
@@ -15,20 +16,31 @@
 //   State<CategoryList> createState() => _CategoryListState();
 // }
 //
-//
 // class _CategoryListState extends State<CategoryList> {
 //
 //   List Updates = [];
-//   final clinicCollection = FirebaseFirestore.instance.collection("updates").where("imageURL", isEqualTo: "clinic");
+//   // final StoreCollection = FirebaseFirestore.instance.collection("updates").where("imageURL", isEqualTo: "store");
+//   //final CollectionReference updates=FirebaseStorage.instance.collection('clinic');
+//   //final Query clinic = clinicCollection.where("catID", isEqualTo: "clinic"),
+//
+//
+//   //CollectionReference Updatesref =
+// //  FirebaseFirestore.instance.collection("Updates");
+//
+//
+//   CollectionReference Updatesref =
+//   FirebaseFirestore.instance.collection("Updates");
+//
 //   getData() async {
-//     var response = await clinicCollection.get();
-//     response.docs.forEach((element) {
+//     var response = await Updatesref .where("imageURL", isEqualTo: "clinic").get();
+//     response.docs.forEach((Category) {
 //       setState(() {
-//         Updates.add(element.data());
+//         Updates.add(Category.data());
 //       });
 //     });
 //     print(Updates);
 //   }
+//
 //
 //   @override
 //   void initState() {

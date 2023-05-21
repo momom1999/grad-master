@@ -4,8 +4,7 @@
 // import 'package:flutter/material.dart';
 //
 // import '../category_grid_view.dart';
-// import '../category_list.dart';
-//
+// import 'package:grad/category_list.dart';
 //
 // class CategoryList extends StatefulWidget {
 //   Category category;
@@ -16,15 +15,10 @@
 //   State<CategoryList> createState() => _CategoryListState();
 // }
 //
-//
 // class _CategoryListState extends State<CategoryList> {
 //
 //   List Updates = [];
-//
-//
-//
-//
-//   final ShelterCollection = FirebaseFirestore.instance.collection("updates").where("imageURL", isEqualTo: "shelter");
+//   // final StoreCollection = FirebaseFirestore.instance.collection("updates").where("imageURL", isEqualTo: "store");
 //   //final CollectionReference updates=FirebaseStorage.instance.collection('clinic');
 //   //final Query clinic = clinicCollection.where("catID", isEqualTo: "clinic"),
 //
@@ -32,11 +26,15 @@
 //   //CollectionReference Updatesref =
 // //  FirebaseFirestore.instance.collection("Updates");
 //
+//
+//   CollectionReference Updatesref =
+//   FirebaseFirestore.instance.collection("Updates");
+//
 //   getData() async {
-//     var response = await ShelterCollection.get();
-//     response.docs.forEach((element) {
+//     var response = await Updatesref .where("imageURL", isEqualTo: "shelter").get();
+//     response.docs.forEach((Category) {
 //       setState(() {
-//         Updates.add(element.data());
+//         Updates.add(Category.data());
 //       });
 //     });
 //     print(Updates);

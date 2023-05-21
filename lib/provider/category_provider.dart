@@ -8,8 +8,6 @@
 //   DocumentSnapshot<Map<String, dynamic>>? updatesDetails;
 //
 //   String? selectedCategory;
-//   String? selectedSubCategory;
-//   List<String> imageUploadedURL = [];
 //   Map<String, dynamic> formData = {};
 //
 //   setCategory(selectedCategory) {
@@ -17,21 +15,14 @@
 //     notifyListeners();
 //   }
 //
-//   setSubCategory(selectedSubCategory) {
-//     this.selectedSubCategory = selectedSubCategory;
-//     notifyListeners();
-//   }
+//
 //
 //   setCategorySnapshot(snapshot) {
 //     doc = snapshot;
 //     notifyListeners();
 //   }
 //
-//   setImageList(url) {
-//     imageUploadedURL.add(url);
-//     print(imageUploadedURL.length);
-//     notifyListeners();
-//   }
+//
 //
 //   setFormData(data) {
 //     formData = data;
@@ -45,9 +36,5 @@
 //     });
 //   }
 //
-//   clearData() {
-//     imageUploadedURL = [];
-//     formData = {};
-//     notifyListeners();
-//   }
+//
 // }

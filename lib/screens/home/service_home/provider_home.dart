@@ -1,17 +1,14 @@
 import 'dart:io';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:grad/DatabaseUtils/storage_services.dart';
 import 'package:grad/base.dart';
 import 'package:grad/model/service_provider_categories.dart';
-import 'package:grad/model/updates.dart';
 import 'package:grad/screens/home/service_home/provider_navigator.dart';
 import 'package:grad/screens/home/service_home/provider_view_model.dart';
 import 'package:grad/screens/home/service_home/thanks.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/theme.dart';
@@ -37,6 +34,7 @@ class _ProviderHomeScreenState
   var linkController = TextEditingController();
   var phoneController = TextEditingController();
   var categories = ServiceProviderCategories.getCategories();
+  String? imageURL = null;
 
   late ServiceProviderCategories selectedcategory;
 
@@ -48,7 +46,6 @@ class _ProviderHomeScreenState
     selectedcategory = categories[0];
   }
 
-  String? selectedImagePath = null;
 
   @override
   Widget build(BuildContext context) {
@@ -234,7 +231,7 @@ class _ProviderHomeScreenState
 
                             final path = results.files.single.path!;
                             final fileName = results.files.single.name;
-                            selectedImagePath = results.files.first.path;
+                            imageURL = results.files.first.path;
                             storage
                                 .uploadFile(path, fileName)
                                 .then((value) => print('Done'));
@@ -247,8 +244,8 @@ class _ProviderHomeScreenState
                                   TextStyle(fontSize: 15, color: Colors.white),
                               alignment: Alignment.bottomLeft),
                         ),
-                        selectedImagePath != null
-                            ? Image.file(File(selectedImagePath!))
+                        imageURL != null
+                            ? Image.file(File(imageURL!))
                             : Container(),
                         SizedBox(
                           height: 180,
@@ -278,7 +275,7 @@ class _ProviderHomeScreenState
   void ValidateForm() {
     if (formKey.currentState!.validate()) {
       viewModel.AddUptadesToDB(titleController.text, descriptionController.text,
-          linkController.text,phoneController.text,selectedImagePath!,
+          linkController.text,phoneController.text,imageURL!,
           selectedcategory.id);
     }
   }

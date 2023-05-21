@@ -4,46 +4,40 @@ import 'package:flutter/material.dart';
 import 'package:grad/category_list.dart';
 import 'package:grad/core/theme.dart';
 import 'package:grad/main.dart';
-import 'package:grad/model/clinic%20category.dart';
 import 'package:grad/screens/home/login_client/login_view.dart';
 import 'category_grid_view.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'home';
 
-
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
-
-
   List<Category> category = [
     Category(
       categoryID: "clinic",
-      categoryImage: "assets/images/clinic.jpg",
+      categoryImage: "assets/images/p3.png",
       categoryTitle: "Clinic",
       categoryBackground: const Color.fromRGBO(0, 10, 50, 100),
     ),
     Category(
       categoryID: "shelter",
-      categoryImage: "assets/images/shelter.jpg",
+      categoryImage: "assets/images/p1.png",
       categoryTitle: "Shelter",
       categoryBackground: const Color.fromRGBO(0, 10, 50, 100),
     ),
     Category(
         categoryID: "store",
-        categoryImage: "assets/images/store.jpg",
+        categoryImage: "assets/images/p4.png",
         categoryTitle: "Store",
         categoryBackground: const Color.fromRGBO(0, 10, 50, 100)),
     Category(
       categoryID: "tips",
-      categoryImage: "assets/images/tips.jpg",
+      categoryImage: "assets/images/p2.png",
       categoryTitle: "Tips",
       categoryBackground: const Color.fromRGBO(0, 10, 50, 100),
-
     ),
   ];
 
@@ -54,16 +48,16 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 0,
         title: Text(
           selectedCategory == null ? 'Paws' : selectedCategory!.categoryTitle,
-          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
+          style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
         ),
         centerTitle: true,
       ),
       drawer: Drawer(
-          child: new Stack(children: <Widget>[
-        new Container(
-          decoration: new BoxDecoration(
-            image: new DecorationImage(
-              image: new AssetImage("assets/images/background.png"),
+          child: Stack(children: <Widget>[
+        Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/background.png"),
               fit: BoxFit.cover,
             ),
           ),
@@ -74,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
             width: double.infinity,
             height: 120,
             color: MyTheme.lightPrimary,
-            child: Text(
+            child: const Text(
               'Paws',
               style: TextStyle(
                   fontSize: 24,
@@ -113,7 +107,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-         
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: InkWell(
@@ -143,14 +136,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ])
       ])),
-      body:
-
-
-
-
-      selectedCategory == null
+      body: selectedCategory == null
           ? Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   image: DecorationImage(
                 image: AssetImage("assets/images/background.png"),
                 fit: BoxFit.cover,
