@@ -1,6 +1,5 @@
 import 'dart:io';
 
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:grad/DatabaseUtils/storage_services.dart';
@@ -9,6 +8,7 @@ import 'package:grad/model/service_provider_categories.dart';
 import 'package:grad/screens/home/service_home/provider_navigator.dart';
 import 'package:grad/screens/home/service_home/provider_view_model.dart';
 import 'package:grad/screens/home/service_home/thanks.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/theme.dart';
@@ -45,7 +45,6 @@ class _ProviderHomeScreenState
     viewModel.navigator = this;
     selectedcategory = categories[0];
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -211,7 +210,6 @@ class _ProviderHomeScreenState
                           },
                         ),
                         TextButton(
-
                           onPressed: () async {
                             final results = await FilePicker.platform.pickFiles(
                               allowMultiple: false,
@@ -274,9 +272,14 @@ class _ProviderHomeScreenState
 
   void ValidateForm() {
     if (formKey.currentState!.validate()) {
-      viewModel.AddUptadesToDB(titleController.text, descriptionController.text,
-          linkController.text,phoneController.text,imageURL!,
-          selectedcategory.id);
+      viewModel.AddUptadesToDB(
+          titleController.text,
+          descriptionController.text,
+        selectedcategory.id,
+          linkController.text,
+          phoneController.text,
+          imageURL!,
+          );
     }
   }
 

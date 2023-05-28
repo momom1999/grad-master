@@ -16,10 +16,11 @@ class Updates {
       required this.catId,
       required this.link,
       required this.phone,
-      this.imageURL=null});
+      this.imageURL = null});
 
   Updates.fromJson(Map<String, dynamic> jason)
       : this(
+          id: jason["id"],
           title: jason["title"],
           description: jason["description"],
           catId: jason["catId"],

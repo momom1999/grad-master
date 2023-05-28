@@ -5,6 +5,7 @@ import 'package:grad/category_list.dart';
 import 'package:grad/core/theme.dart';
 import 'package:grad/main.dart';
 import 'package:grad/screens/home/login_client/login_view.dart';
+import 'package:grad/screens/home/service_home/thanks.dart';
 import 'category_grid_view.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -20,24 +21,24 @@ class _HomeScreenState extends State<HomeScreen> {
       categoryID: "clinic",
       categoryImage: "assets/images/p3.png",
       categoryTitle: "Clinic",
-      categoryBackground: const Color.fromRGBO(0, 10, 50, 100),
+      categoryBackground: const Color.fromRGBO(0, 10, 50, 500),
     ),
     Category(
       categoryID: "shelter",
       categoryImage: "assets/images/p1.png",
       categoryTitle: "Shelter",
-      categoryBackground: const Color.fromRGBO(0, 10, 50, 100),
+      categoryBackground: const Color.fromRGBO(0, 10, 50, 500),
     ),
     Category(
         categoryID: "store",
         categoryImage: "assets/images/p4.png",
         categoryTitle: "Store",
-        categoryBackground: const Color.fromRGBO(0, 10, 50, 100)),
+        categoryBackground: const Color.fromRGBO(0, 10, 50, 500)),
     Category(
       categoryID: "tips",
       categoryImage: "assets/images/p2.png",
       categoryTitle: "Tips",
-      categoryBackground: const Color.fromRGBO(0, 10, 50, 100),
+      categoryBackground: const Color.fromRGBO(0, 10, 50, 500),
     ),
   ];
 
@@ -153,10 +154,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 26,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w700,
                           color: Color(0xFF000A32))),
                   SizedBox(
-                    height: 30,
+                    height: 50,
                   ),
                   Expanded(
                     child: GridView.builder(

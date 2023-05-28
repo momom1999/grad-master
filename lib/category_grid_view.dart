@@ -14,6 +14,7 @@ class CategoryGridView extends StatelessWidget {
       padding: EdgeInsets.zero,
       child: InkWell(
         onTap: () {
+          
           onClickItem(category);
         },
         child: Container(

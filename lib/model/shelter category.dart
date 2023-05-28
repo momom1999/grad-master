@@ -6,10 +6,10 @@
 // import '../category_grid_view.dart';
 // import 'package:grad/category_list.dart';
 //
-// class CategoryList extends StatefulWidget {
+// class Shelter extends StatefulWidget {
 //   Category category;
 //
-//   CategoryList(this.category);
+//   Shelter(this.category);
 //
 //   @override
 //   State<CategoryList> createState() => _CategoryListState();
@@ -31,7 +31,7 @@
 //   FirebaseFirestore.instance.collection("Updates");
 //
 //   getData() async {
-//     var response = await Updatesref .where("imageURL", isEqualTo: "shelter").get();
+//     var response = await Updatesref .where("imageURL", isEqualTo: "clinic").get();
 //     response.docs.forEach((Category) {
 //       setState(() {
 //         Updates.add(Category.data());
