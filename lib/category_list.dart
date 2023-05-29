@@ -4,6 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:grad/DatabaseUtils/database_utils.dart';
 import 'package:grad/screens/home/service_home/thanks.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'category_grid_view.dart';
 import 'model/updates.dart';
 import 'model/updates.dart';
@@ -12,6 +13,15 @@ class CategoryList extends StatefulWidget {
   Category category;
 
   CategoryList(this.category);
+
+
+  Future<void> _launchUrl(String? phoneNumber) async {
+    final Uri _whatsApp = Uri.parse("whatsapp://send?phone=+2$phoneNumber");
+    if (!await launchUrl(_whatsApp)) {
+      throw Exception('Could not launch $_whatsApp');
+    }
+  }
+
 
   @override
   State<CategoryList> createState() => _CategoryListState();
@@ -100,10 +110,46 @@ class _CategoryListState extends State<CategoryList> {
                             Text(doc['title']),
                             Text(doc['description']),
                             Text(doc['link']),
-                            Text(doc['phone']),
+
+                            Row(      mainAxisAlignment: MainAxisAlignment.spaceAround,
+
+                              children: [
+                                ElevatedButton.icon(
+                                  onPressed: () async {
+                                    final Uri url = Uri(
+                                      scheme: "tel",
+                                      path: (doc['phone']),
+                                    );
+                                    if (await canLaunchUrl(url)) {
+                                      await launchUrl(url);
+                                    } else {
+                                      print("can not launch this url");
+                                    }
+                                  },
+                                  icon: const Icon(
+                                    Icons.phone,
+                                  ),
+                                  label: const Text("Calling        "),
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all(
+                                        const Color(0xff072948)),
+                                  ),
+                                ),
+                                IconButton(
+                                    icon: const Icon(
+                                      Icons.whatsapp,
+                                      size: 30,
+                                    ),
+                                    color: Colors.green.shade800,
+                                    onPressed: () {
+                                      launchUrl(doc['phone']);
+                                    }),
+
+
+
                           ],
-                        ),
-                      ]),
+                        ),],
+                        )]),
                 );
               }));
         });

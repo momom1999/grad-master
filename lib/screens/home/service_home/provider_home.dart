@@ -35,7 +35,18 @@ class _ProviderHomeScreenState
   var phoneController = TextEditingController();
   var categories = ServiceProviderCategories.getCategories();
   String? imageURL = null;
-
+  File? _image;
+  final picker = ImagePicker();
+  Future getImage() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
   late ServiceProviderCategories selectedcategory;
 
   @override
@@ -209,6 +220,7 @@ class _ProviderHomeScreenState
                             setState(() {});
                           },
                         ),
+
                         TextButton(
                           onPressed: () async {
                             final results = await FilePicker.platform.pickFiles(
@@ -239,7 +251,7 @@ class _ProviderHomeScreenState
                           style: TextButton.styleFrom(
                               primary: Color(0xFF000A32),
                               textStyle:
-                                  TextStyle(fontSize: 15, color: Colors.white),
+                              TextStyle(fontSize: 15, color: Colors.white),
                               alignment: Alignment.bottomLeft),
                         ),
                         imageURL != null
@@ -260,10 +272,10 @@ class _ProviderHomeScreenState
                             child: Text(
                               'Update',
                               style:
-                                  TextStyle(fontSize: 18, color: Colors.white),
+                              TextStyle(fontSize: 18, color: Colors.white),
                             )),
                       ],
-                    ))),
+                            ))),
                   )
                 ])),
           ])),
@@ -273,13 +285,13 @@ class _ProviderHomeScreenState
   void ValidateForm() {
     if (formKey.currentState!.validate()) {
       viewModel.AddUptadesToDB(
-          titleController.text,
-          descriptionController.text,
+        titleController.text,
+        descriptionController.text,
         selectedcategory.id,
-          linkController.text,
-          phoneController.text,
-          imageURL!,
-          );
+        linkController.text,
+        phoneController.text,
+        imageURL!,
+      );
     }
   }
 
