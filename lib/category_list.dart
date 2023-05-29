@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -14,14 +16,21 @@ class CategoryList extends StatefulWidget {
 
   CategoryList(this.category);
 
-
-  Future<void> _launchUrl(String? phoneNumber) async {
-    final Uri _whatsApp = Uri.parse("whatsapp://send?phone=+2$phoneNumber");
-    if (!await launchUrl(_whatsApp)) {
-      throw Exception('Could not launch $_whatsApp');
+  Future<void> _launchLinkUrl(String? link) async {
+    _launchURL() async {
+      final Uri weblink = Uri.parse('https://flutter.dev$link');
+      if (!await launchUrl(weblink)) {
+        throw Exception('Could not launch $weblink');
+      }
     }
   }
 
+  Future<void> _launchUrl(String? phoneNumber) async {
+    final Uri whatsApp = Uri.parse("whatsapp://send?phone=+2$phoneNumber");
+    if (!await launchUrl(whatsApp)) {
+      throw Exception('Could not launch $whatsApp');
+    }
+  }
 
   @override
   State<CategoryList> createState() => _CategoryListState();
@@ -36,7 +45,6 @@ class _CategoryListState extends State<CategoryList> {
   getData(String type) async {
     var response = await Updatesref.where("catId", isEqualTo: type).get();
     //if (isEqualTo:tips)Navigator.pushNamed(context, Thanks.routeName);
-
 
     response.docs.forEach((element) {
       setState(() {
@@ -107,12 +115,10 @@ class _CategoryListState extends State<CategoryList> {
                           verticalDirection: VerticalDirection.up,
                           children: [
                             //Text("${Updates[i]['catId']}"),
-                            Text(doc['title']),
-                            Text(doc['description']),
-                            Text(doc['link']),
+                            Text(doc['description']), Text(doc['title']),
 
-                            Row(      mainAxisAlignment: MainAxisAlignment.spaceAround,
-
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 ElevatedButton.icon(
                                   onPressed: () async {
@@ -137,21 +143,60 @@ class _CategoryListState extends State<CategoryList> {
                                 ),
                                 IconButton(
                                     icon: const Icon(
+                                      
                                       Icons.whatsapp,
                                       size: 30,
                                     ),
                                     color: Colors.green.shade800,
-                                    onPressed: () {
-                                      launchUrl(doc['phone']);
+                                    onPressed: () {{sendWhatsAppMessage(phone: doc['phone'], message: 'hey');}
                                     }),
 
-
-
+                                ElevatedButton.icon(
+                                  onPressed: () async {
+                                    final httpsUri = Uri(
+                                      scheme: "https",
+                                      path: (doc['link']),
+                                    );
+                                    if (await canLaunchUrl(httpsUri)) {
+                                      await launchUrl(httpsUri);
+                                    } else {
+                                      print("can not launch this url");
+                                    }
+                                  },
+                                  icon: const Icon(
+                                    Icons.link,
+                                  ),
+                                  label: const Text("Link       "),
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all(
+                                        const Color(0xff072948)),
+                                  ),
+                                )
+                              ],
+                            ),
                           ],
-                        ),],
-                        )]),
+                        )
+                      ]),
                 );
               }));
         });
+  }
+  void sendWhatsAppMessage({
+    required String phone,
+    required String message,
+  }) async {
+    String url() {
+      if (Platform.isIOS) {
+        return "whatsapp://wa.me/$phone/?text=${Uri.parse(message)}";
+      } else {
+        return "whatsapp://send?phone=+2$phone&text=$message";
+      }
+    }
+
+    await canLaunch(url())
+        ? launch(url())
+        : ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        backgroundColor: Colors.red,
+        content: Text('There is no WhatsApp on your Device!')));
   }
 }
