@@ -28,12 +28,12 @@ class _ProviderHomeScreenState
     extends BaseView<ProviderHomeScreen, ProviderHomeViewModel>
     implements ProviderHomeNavigator {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
   var titleController = TextEditingController();
   var descriptionController = TextEditingController();
   var linkController = TextEditingController();
   var phoneController = TextEditingController();
   var categories = ServiceProviderCategories.getCategories();
+
   String? imageURL = null;
   File? _image;
   final picker = ImagePicker();

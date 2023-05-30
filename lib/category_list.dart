@@ -64,6 +64,7 @@ class _CategoryListState extends State<CategoryList> {
   getImagesAndFolderName() async {
     var ref = await FirebaseStorage.instance.ref("test/").listAll();
 
+
     ref.items.forEach((element) {
       print("======");
       print(element.fullPath);
@@ -100,10 +101,11 @@ class _CategoryListState extends State<CategoryList> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         ClipRRect(
-                          // borderRadius: BorderRadius.circular(100),
+
                           child: CachedNetworkImage(
                             height: 200,
                             width: double.infinity,
+
                             imageUrl: (doc!['imageURL']),
                           ),
                         ),
@@ -143,14 +145,16 @@ class _CategoryListState extends State<CategoryList> {
                                 ),
                                 IconButton(
                                     icon: const Icon(
-                                      
                                       Icons.whatsapp,
                                       size: 30,
                                     ),
                                     color: Colors.green.shade800,
-                                    onPressed: () {{sendWhatsAppMessage(phone: doc['phone'], message: 'hey');}
+                                    onPressed: () {
+                                      {
+                                        sendWhatsAppMessage(
+                                            phone: doc['phone'], message: '');
+                                      }
                                     }),
-
                                 ElevatedButton.icon(
                                   onPressed: () async {
                                     final httpsUri = Uri(
@@ -181,6 +185,7 @@ class _CategoryListState extends State<CategoryList> {
               }));
         });
   }
+
   void sendWhatsAppMessage({
     required String phone,
     required String message,
@@ -196,7 +201,7 @@ class _CategoryListState extends State<CategoryList> {
     await canLaunch(url())
         ? launch(url())
         : ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        backgroundColor: Colors.red,
-        content: Text('There is no WhatsApp on your Device!')));
+            backgroundColor: Colors.red,
+            content: Text('There is no WhatsApp on your Device!')));
   }
 }
