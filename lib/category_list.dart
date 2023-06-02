@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -64,7 +65,6 @@ class _CategoryListState extends State<CategoryList> {
   getImagesAndFolderName() async {
     var ref = await FirebaseStorage.instance.ref("test/").listAll();
 
-
     ref.items.forEach((element) {
       print("======");
       print(element.fullPath);
@@ -79,111 +79,140 @@ class _CategoryListState extends State<CategoryList> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: DataBaseUtils.getClinicUpdates(widget.category.categoryID),
-        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.hasError) {
-            return Text("erorrrrrrrrrrrrrrrrrr");
-          }
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
-          }
+    return Scaffold(
 
-          return ListView.builder(
-              itemCount: snapshot.data?.docs.length,
-              itemBuilder: ((context, index) {
-                var doc = snapshot.data?.docs[index];
-                return Container(
-                  padding: const EdgeInsets.all(0),
-                  margin: const EdgeInsets.symmetric(horizontal: 5),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        ClipRRect(
+        body:new Stack(
+            children: <Widget>[
+        new Container(
+        decoration: new BoxDecoration(
+        image: new DecorationImage(
+        image: new AssetImage("assets/images/background.png"),
+      fit: BoxFit.cover,
+    ),
+    ),
+    ),
+    FutureBuilder(
+            future: DataBaseUtils.getClinicUpdates(widget.category.categoryID),
+            builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.hasError) {
+                return Text("erorrrrrrrrrrrrrrrrrr");
+              }
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator());
+              }
 
-                          child: CachedNetworkImage(
-                            height: 200,
-                            width: double.infinity,
+              return ListView.builder(
+                  itemCount: snapshot.data?.docs.length,
+                  itemBuilder: ((context, index) {
+                    var doc = snapshot.data?.docs[index];
 
-                            imageUrl: (doc!['imageURL']),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          verticalDirection: VerticalDirection.up,
+                    return Container(
+                      padding: const EdgeInsets.all(0),
+                      margin: const EdgeInsets.symmetric(horizontal: 5),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            //Text("${Updates[i]['catId']}"),
-                            Text(doc['description']), Text(doc['title']),
-
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                ElevatedButton.icon(
-                                  onPressed: () async {
-                                    final Uri url = Uri(
-                                      scheme: "tel",
-                                      path: (doc['phone']),
-                                    );
-                                    if (await canLaunchUrl(url)) {
-                                      await launchUrl(url);
-                                    } else {
-                                      print("can not launch this url");
-                                    }
-                                  },
-                                  icon: const Icon(
-                                    Icons.phone,
-                                  ),
-                                  label: const Text("Calling        "),
-                                  style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all(
-                                        const Color(0xff072948)),
-                                  ),
-                                ),
-                                IconButton(
-                                    icon: const Icon(
-                                      Icons.whatsapp,
-                                      size: 30,
-                                    ),
-                                    color: Colors.green.shade800,
-                                    onPressed: () {
-                                      {
-                                        sendWhatsAppMessage(
-                                            phone: doc['phone'], message: '');
-                                      }
-                                    }),
-                                ElevatedButton.icon(
-                                  onPressed: () async {
-                                    final httpsUri = Uri(
-                                      scheme: "https",
-                                      path: (doc['link']),
-                                    );
-                                    if (await canLaunchUrl(httpsUri)) {
-                                      await launchUrl(httpsUri);
-                                    } else {
-                                      print("can not launch this url");
-                                    }
-                                  },
-                                  icon: const Icon(
-                                    Icons.link,
-                                  ),
-                                  label: const Text("Link       "),
-                                  style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all(
-                                        const Color(0xff072948)),
-                                  ),
-                                )
-                              ],
+                            Image.file(
+                              File(
+                                doc!['imageURL'],
+                              ),
+                              width: 200,
+                              height: 200,
+                              fit: BoxFit.fill,
                             ),
-                          ],
-                        )
-                      ]),
-                );
-              }));
-        });
+                            // ClipRRect(
+                            //
+                            //   child: CachedNetworkImage(
+                            //
+                            //
+                            //     height: 200,
+                            //     width: double.infinity,
+                            //
+                            //
+                            //     imageUrl: (doc!['imageURL']),
+                            //   ),
+                            // ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              verticalDirection: VerticalDirection.up,
+                              children: [
+                                //Text("${Updates[i]['catId']}"),
+                                Text(doc['description']), Text(doc['title']),
+
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    ElevatedButton.icon(
+                                      onPressed: () async {
+                                        final Uri url = Uri(
+                                          scheme: "tel",
+                                          path: (doc['phone']),
+                                        );
+                                        if (await canLaunchUrl(url)) {
+                                          await launchUrl(url);
+                                        } else {
+                                          print("can not launch this url");
+                                        }
+                                      },
+                                      icon: const Icon(
+                                        Icons.phone,
+                                      ),
+                                      label: const Text("Calling        "),
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                const Color(0xff072948)),
+                                      ),
+                                    ),
+                                    IconButton(
+                                        icon: const Icon(
+                                          Icons.whatsapp,
+                                          size: 30,
+                                        ),
+                                        color: Colors.green.shade800,
+                                        onPressed: () {
+                                          {
+                                            sendWhatsAppMessage(
+                                                phone: doc['phone'],
+                                                message: '');
+                                          }
+                                        }),
+                                    ElevatedButton.icon(
+                                      onPressed: () async {
+                                        final httpsUri = Uri(
+                                          scheme: "https",
+                                          path: (doc['link']),
+                                        );
+                                        if (await canLaunchUrl(httpsUri)) {
+                                          await launchUrl(httpsUri);
+                                        } else {
+                                          print("can not launch this url");
+                                        }
+                                      },
+                                      icon: const Icon(
+                                        Icons.link,
+                                      ),
+                                      label: const Text("Link       "),
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                const Color(0xff072948)),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            )
+                          ]),
+                    );
+                  }));
+            })]));
   }
 
   void sendWhatsAppMessage({
