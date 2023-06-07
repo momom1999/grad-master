@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:grad/category_list.dart';
 import 'package:grad/core/theme.dart';
 import 'package:grad/main.dart';
+import 'package:grad/screens/Tips_Screen.dart';
 import 'package:grad/screens/home/login_client/login_view.dart';
 import 'package:grad/screens/home/service_home/thanks.dart';
 import 'category_grid_view.dart';
@@ -164,8 +165,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        crossAxisSpacing: 8,
-                        mainAxisSpacing: 8,
+                        crossAxisSpacing: 0,
+                        mainAxisSpacing: 0,
                         childAspectRatio: 6 / 7,
                       ),
                       itemBuilder: (context, index) => CategoryGridView(
@@ -185,6 +186,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Category? selectedCategory = null;
   void onClick(Category category) {
+    if(category.categoryID=='tips'){
+      Navigator.pushReplacementNamed(context, TipsScreen.routeName);
+    }
     setState(() {
       selectedCategory = category;
     });

@@ -6,10 +6,12 @@ import 'package:grad/firebase_options.dart';
 import 'package:grad/home.dart';
 import 'package:grad/core/register/register.dart';
 import 'package:grad/provider/my_provider.dart';
+import 'package:grad/screens/Tips_Screen.dart';
 import 'package:grad/screens/home/login_sevice_provider/login_serviceprovider.dart';
 import 'package:grad/screens/home/service_home/thanks.dart';
 import 'package:grad/screens/home/login_client/login_view.dart';
 import 'package:grad/screens/home/service_home/provider_home.dart';
+import 'package:grad/screens/serviceDetails.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -35,6 +37,8 @@ class _MyApplicationState extends State<MyApplication> {
         title: 'Paws',
         debugShowCheckedModeBanner: false,
         routes: {
+          TipsScreen.routeName:(context) => TipsScreen(),
+          serviceDetails.routeName:(context) => serviceDetails(),
           ProviderHomeScreen.routeName: (_) => ProviderHomeScreen(),
           HomeScreen.routeName: (_) => HomeScreen(),
           Register.routeName: (_) => Register(),

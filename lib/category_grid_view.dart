@@ -11,7 +11,7 @@ class CategoryGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: EdgeInsets.zero,
+      padding: EdgeInsets.symmetric(horizontal: 8),
       child: InkWell(
         onTap: () {
           
@@ -31,7 +31,7 @@ class CategoryGridView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(category.categoryImage),
+              ClipRRect(child: Image.asset(category.categoryImage),borderRadius: BorderRadius.circular(20)),
               Text(
                 category.categoryTitle,
                 style: Theme.of(context).textTheme.headline6,

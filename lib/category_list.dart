@@ -7,6 +7,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:grad/DatabaseUtils/database_utils.dart';
 import 'package:grad/screens/home/service_home/thanks.dart';
+import 'package:grad/screens/serviceDetails.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'category_grid_view.dart';
 import 'model/updates.dart';
@@ -81,12 +82,12 @@ class _CategoryListState extends State<CategoryList> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-        body:new Stack(
+        body:Stack(
             children: <Widget>[
-        new Container(
-        decoration: new BoxDecoration(
-        image: new DecorationImage(
-        image: new AssetImage("assets/images/background.png"),
+        Container(
+        decoration: const BoxDecoration(
+        image: DecorationImage(
+        image: AssetImage("assets/images/background.png"),
       fit: BoxFit.cover,
     ),
     ),
@@ -105,113 +106,55 @@ class _CategoryListState extends State<CategoryList> {
                   itemCount: snapshot.data?.docs.length,
                   itemBuilder: ((context, index) {
                     var doc = snapshot.data?.docs[index];
-
                     return Container(
                       padding: const EdgeInsets.all(0),
                       margin: const EdgeInsets.symmetric(horizontal: 5),
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image.file(
-                              File(
-                                doc!['imageURL'],
-                              ),
-                              width: 200,
-                              height: 200,
-                              fit: BoxFit.fill,
-                            ),
-                            // ClipRRect(
-                            //
-                            //   child: CachedNetworkImage(
-                            //
-                            //
-                            //     height: 200,
-                            //     width: double.infinity,
-                            //
-                            //
-                            //     imageUrl: (doc!['imageURL']),
-                            //   ),
-                            // ),
-                            const SizedBox(
-                              height: 5,
-                            ),
 
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              verticalDirection: VerticalDirection.up,
-                              children: [
-                                //Text("${Updates[i]['catId']}"),
-                                Text(doc['description']), Text(doc['title']),
+                    children: [
+                      Card(
 
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    ElevatedButton.icon(
-                                      onPressed: () async {
-                                        final Uri url = Uri(
-                                          scheme: "tel",
-                                          path: (doc['phone']),
-                                        );
-                                        if (await canLaunchUrl(url)) {
-                                          await launchUrl(url);
-                                        } else {
-                                          print("can not launch this url");
-                                        }
-                                      },
-                                      icon: const Icon(
-                                        Icons.phone,
-                                      ),
-                                      label: const Text("Calling        "),
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all(
-                                                const Color(0xff072948)),
+                      elevation: 50,
+                      clipBehavior: Clip.hardEdge,
+                      color: const Color.fromRGBO(0, 10, 50, 500),
+                      child: SizedBox(
+                      width: double.infinity,
+                      // height: 350,
+                      child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                            textBaseline: TextBaseline.alphabetic,
+                            children: [
+                              Text(doc!['title'],style:TextStyle(fontStyle:FontStyle.italic,fontWeight: FontWeight.bold,fontSize: 22)),
+                              SizedBox(height: 5,),
+                              Row(
+                                children: [
+                                  InkWell(
+                                    onTap: () => Navigator.pushNamed(context, serviceDetails.routeName,arguments:doc),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(20),
+                                      child: Image.file(
+                                        File(
+                                          doc!['imageURL'],
+                                        ),
+                                        height: 200,
+                                        fit: BoxFit.fill,
                                       ),
                                     ),
-                                    IconButton(
-                                        icon: const Icon(
-                                          Icons.whatsapp,
-                                          size: 30,
-                                        ),
-                                        color: Colors.green.shade800,
-                                        onPressed: () {
-                                          {
-                                            sendWhatsAppMessage(
-                                                phone: doc['phone'],
-                                                message: '');
-                                          }
-                                        }),
-                                    ElevatedButton.icon(
-                                      onPressed: () async {
-                                        final httpsUri = Uri(
-                                          scheme: "https",
-                                          path: (doc['link']),
-                                        );
-                                        if (await canLaunchUrl(httpsUri)) {
-                                          await launchUrl(httpsUri);
-                                        } else {
-                                          print("can not launch this url");
-                                        }
-                                      },
-                                      icon: const Icon(
-                                        Icons.link,
-                                      ),
-                                      label: const Text("Link       "),
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all(
-                                                const Color(0xff072948)),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ],
-                            )
-                          ]),
-                    );
-                  }));
+                                  ),
+                                ],
+                              ),
+                            ]
+                    ),
+                      ),
+                    )
+                    )
+
+                    ]
+                    ));}));
             })]));
   }
 
