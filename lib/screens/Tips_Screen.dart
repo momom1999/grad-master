@@ -20,7 +20,16 @@ class TipsScreen extends StatelessWidget {
               Navigator.pushReplacementNamed(context, HomeScreen.routeName);
             }),
       ),
-      body: ListView.separated(
+      body:Stack(children: <Widget>[
+      Container(
+      decoration: new BoxDecoration(
+      image: new DecorationImage(
+      image: new AssetImage("assets/images/background.png"),
+      fit: BoxFit.cover,
+    ),
+    ),
+    ),
+      ListView.separated(
           separatorBuilder: (context, index) => SizedBox(
                 height: 8,
               ),
@@ -29,6 +38,7 @@ class TipsScreen extends StatelessWidget {
             return tipsWidget(tips[index]);
           },
           itemCount: tips.length),
-    );
+
+    ]));
   }
 }

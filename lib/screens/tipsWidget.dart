@@ -18,5 +18,6 @@ tipsWidget(this.tips);
             ),
           ),
     );
+
   }
 }

@@ -138,7 +138,7 @@ class _CategoryListState extends State<CategoryList> {
                                       borderRadius: BorderRadius.circular(20),
                                       child: Image.file(
                                         File(
-                                          doc!['imageURL'],
+                                          doc['imageURL'],
                                         ),
                                         height: 200,
                                         fit: BoxFit.fill,

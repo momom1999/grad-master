@@ -19,7 +19,16 @@ class _serviceDetailsState extends State<serviceDetails> {
         as QueryDocumentSnapshot<Object?>;
     return Scaffold(
       appBar: AppBar(title: Text(service.get("title").toString())),
-      body: SingleChildScrollView(
+      body: Stack(children: <Widget>[
+      Container(
+      decoration: new BoxDecoration(
+      image: new DecorationImage(
+      image: new AssetImage("assets/images/background.png"),
+      fit: BoxFit.cover,
+    ),
+    ),
+    ),
+      SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
           child: Column(
@@ -27,6 +36,7 @@ class _serviceDetailsState extends State<serviceDetails> {
             textBaseline: TextBaseline.alphabetic,
             mainAxisAlignment: MainAxisAlignment.center,
             // verticalDirection: VerticalDirection.up,
+
             children: [
               Container(
                 height: 300,
@@ -48,13 +58,13 @@ class _serviceDetailsState extends State<serviceDetails> {
                     border: Border.all(color: Colors.black)),
                 padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5),
                 child: Text(service.get('description'),
-                    style: TextStyle(fontSize: 20)),
+                    style: TextStyle(fontSize: 20,color: Color(0xFF000A32))),
               ),
               SizedBox(
                 height: 12,
               ),
               Row(
-                mainAxisAlignment:MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton.icon(
                     onPressed: () async {
@@ -77,46 +87,29 @@ class _serviceDetailsState extends State<serviceDetails> {
                           MaterialStateProperty.all(const Color(0xff072948)),
                     ),
                   ),
-
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor:
-                        MaterialStateProperty.all(const Color(0xff072948)),
-                      ),
-                      onPressed: () {
-
-                      },
-                      child: Row(
-                        children: [
-                          IconButton(
-                                icon: const Icon(
-                                  Icons.whatsapp,
-                                  size: 30,
-                                ),
-                                color: Colors.white,
-                                onPressed: () {
-                                  {
-                                    sendWhatsAppMessage(
-                                        phone: service.get('phone'),
-                                        message: '');
-                                  }
-                                }),
-                        ],
-                      ),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(const Color(0xff072948)),
                     ),
-                  // IconButton(
-                  //     icon: const Icon(
-                  //       Icons.whatsapp,
-                  //       size: 30,
-                  //     ),
-                  //     color: Colors.green.shade800,
-                  //     onPressed: () {
-                  //       {
-                  //         sendWhatsAppMessage(
-                  //             phone: service.get('phone'),
-                  //             message: '');
-                  //       }
-                  //     }),
+                    onPressed: () {},
+                    child: Row(
+                      children: [
+                        IconButton(
+                            icon: const Icon(
+                              Icons.whatsapp,
+                              size: 30,
+                            ),
+                            color: Colors.white,
+                            onPressed: () {
+                              {
+                                sendWhatsAppMessage(
+                                    phone: service.get('phone'), message: '');
+                              }
+                            }),
+                      ],
+                    ),
+                  ),
                   ElevatedButton.icon(
                     onPressed: () async {
                       final httpsUri = Uri(
@@ -144,7 +137,7 @@ class _serviceDetailsState extends State<serviceDetails> {
           ),
         ),
       ),
-    );
+    ]));
   }
 
   void sendWhatsAppMessage({
@@ -162,8 +155,7 @@ class _serviceDetailsState extends State<serviceDetails> {
     await canLaunch(url())
         ? launch(url())
         : ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        backgroundColor: Colors.red,
-        content: Text('There is no WhatsApp on your Device!')));
+            backgroundColor: Colors.red,
+            content: Text('There is no WhatsApp on your Device!')));
   }
-    }
-
+}
