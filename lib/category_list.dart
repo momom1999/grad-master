@@ -128,8 +128,8 @@ class _CategoryListState extends State<CategoryList> {
                         crossAxisAlignment: CrossAxisAlignment.baseline,
                             textBaseline: TextBaseline.alphabetic,
                             children: [
-                              Text(doc!['title'],style:TextStyle(fontStyle:FontStyle.italic,fontWeight: FontWeight.bold,fontSize: 22)),
-                              SizedBox(height: 5,),
+
+
                               Row(
                                 children: [
                                   InkWell(
@@ -138,7 +138,7 @@ class _CategoryListState extends State<CategoryList> {
                                       borderRadius: BorderRadius.circular(20),
                                       child: Image.file(
                                         File(
-                                          doc['imageURL'],
+                                          doc!['imageURL'],
                                         ),
                                         height: 200,
                                         fit: BoxFit.fill,
@@ -146,7 +146,19 @@ class _CategoryListState extends State<CategoryList> {
                                     ),
                                   ),
                                 ],
-                              ),
+                              ),SizedBox(height: 5,),
+                              Text(doc!['title'],style:TextStyle(fontStyle:FontStyle.italic,fontWeight: FontWeight.bold,fontSize: 22)),
+                      Row(
+                        children: [
+                          Icon(
+                              Icons.location_on,
+                              color: Colors.pink,
+                              size: 24.0,
+                          ),
+
+                              Text(doc['address'],style:TextStyle(fontStyle:FontStyle.italic,fontWeight: FontWeight.bold,fontSize: 16)),],),
+
+
                             ]
                     ),
                       ),

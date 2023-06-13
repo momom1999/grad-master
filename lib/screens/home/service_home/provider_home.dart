@@ -30,6 +30,7 @@ class _ProviderHomeScreenState
     implements ProviderHomeNavigator {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   var titleController = TextEditingController();
+  var addressController = TextEditingController();
   var descriptionController = TextEditingController();
   var linkController = TextEditingController();
   var phoneController = TextEditingController();
@@ -48,6 +49,7 @@ class _ProviderHomeScreenState
       }
     });
   }
+
   late ServiceProviderCategories selectedcategory;
 
   @override
@@ -86,201 +88,224 @@ class _ProviderHomeScreenState
                     child: Form(
                         child: SingleChildScrollView(
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  height: 30,
-                                ),
-                                Text(
-                                  'Update Data',
-                                  style: TextStyle(
-                                      fontSize: 17, fontWeight: FontWeight.w500),
-                                ),
-                                SizedBox(
-                                  height: 30,
-                                ),
-                                TextFormField(
-                                  controller: titleController,
-                                  validator: (text) {
-                                    if (text!.trim() == "") {
-                                      return "Please Enter Title";
-                                    }
-                                    return null;
-                                  },
-                                  textInputAction: TextInputAction.next,
-                                  decoration: InputDecoration(
-                                    hintText: 'Title',
-                                    border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(16),
-                                        borderSide:
-                                        BorderSide(color: Color(0xFF000A32))),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(16),
-                                        borderSide:
-                                        BorderSide(color: Color(0xFF000A32))),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                TextFormField(
-                                  controller: descriptionController,
-                                  keyboardType: TextInputType.multiline,
-                                  validator: (text) {
-                                    if (text!.trim() == "") {
-                                      return "Please Enter Description";
-                                    }
-                                    return null;
-                                  },
-                                  textInputAction: TextInputAction.newline,
-                                  decoration: InputDecoration(
-                                    contentPadding: const EdgeInsets.symmetric(
-                                      vertical: 40.0,
-                                    ),
-                                    hintText: 'Description',
-                                    border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(16),
-                                        borderSide:
-                                        BorderSide(color: Color(0xFF000A32))),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(16),
-                                        borderSide:
-                                        BorderSide(color: Color(0xFF000A32))),
-                                  ),
-                                  maxLines: 10,
-                                  minLines: 3,
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                TextFormField(
-                                  controller: linkController,
-                                  validator: (text) {
-                                    if (text!.trim() == "") {
-                                      return "Please Enter Your Link";
-                                    }
-                                    return null;
-                                  },
-                                  textInputAction: TextInputAction.next,
-                                  decoration: InputDecoration(
-                                    hintText: 'Link',
-                                    border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(16),
-                                        borderSide:
-                                        BorderSide(color: Color(0xFF000A32))),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(16),
-                                        borderSide:
-                                        BorderSide(color: Color(0xFF000A32))),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                TextFormField(
-                                  controller: phoneController,
-                                  validator: (text) {
-                                    if (text!.trim() == "") {
-                                      return "Please Enter Your Phone";
-                                    }
-                                    return null;
-                                  },
-                                  textInputAction: TextInputAction.next,
-                                  decoration: InputDecoration(
-                                    hintText: 'Phone',
-                                    border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(16),
-                                        borderSide:
-                                        BorderSide(color: Color(0xFF000A32))),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(16),
-                                        borderSide:
-                                        BorderSide(color: Color(0xFF000A32))),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                DropdownButton<ServiceProviderCategories>(
-                                  value: selectedcategory,
-                                  items: categories
-                                      .map((cat) =>
-                                      DropdownMenuItem<ServiceProviderCategories>(
-                                          value: cat,
-                                          child: Row(
-                                            children: [Text(cat.name)],
-                                          )))
-                                      .toList(),
-                                  onChanged: (category) {
-                                    if (category == null) {
-                                      return;
-                                    } else {
-                                      selectedcategory = category;
-                                    }
-                                    setState(() {});
-                                  },
-                                ),
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Text(
+                          'Update Data',
+                          style: TextStyle(
+                              fontSize: 17, fontWeight: FontWeight.w500),
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        TextFormField(
+                          controller: titleController,
+                          validator: (text) {
+                            if (text!.trim() == "") {
+                              return "Please Enter Title";
+                            }
+                            return null;
+                          },
+                          textInputAction: TextInputAction.next,
+                          decoration: InputDecoration(
+                            hintText: 'Title',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16),
+                                borderSide:
+                                    BorderSide(color: Color(0xFF000A32))),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16),
+                                borderSide:
+                                    BorderSide(color: Color(0xFF000A32))),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        TextFormField(
+                          controller: addressController,
+                          validator: (text) {
+                            if (text!.trim() == "") {
+                              return "Please Enter Address";
+                            }
+                            return null;
+                          },
+                          textInputAction: TextInputAction.next,
+                          decoration: InputDecoration(
+                            hintText: 'Address',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16),
+                                borderSide:
+                                    BorderSide(color: Color(0xFF000A32))),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16),
+                                borderSide:
+                                    BorderSide(color: Color(0xFF000A32))),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        TextFormField(
+                          controller: descriptionController,
+                          keyboardType: TextInputType.multiline,
+                          validator: (text) {
+                            if (text!.trim() == "") {
+                              return "Please Enter Description";
+                            }
+                            return null;
+                          },
+                          textInputAction: TextInputAction.newline,
+                          decoration: InputDecoration(
+                            contentPadding: const EdgeInsets.symmetric(
+                              vertical: 40.0,
+                            ),
+                            hintText: '  Description',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16),
+                                borderSide:
+                                    BorderSide(color: Color(0xFF000A32))),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16),
+                                borderSide:
+                                    BorderSide(color: Color(0xFF000A32))),
+                          ),
+                          maxLines: 10,
+                          minLines: 3,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          controller: linkController,
+                          validator: (text) {
+                            if (text!.trim() == "") {
+                              return "Please Enter Your Link";
+                            }
+                            return null;
+                          },
+                          textInputAction: TextInputAction.next,
+                          decoration: InputDecoration(
+                            hintText: 'Link',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16),
+                                borderSide:
+                                    BorderSide(color: Color(0xFF000A32))),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16),
+                                borderSide:
+                                    BorderSide(color: Color(0xFF000A32))),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          controller: phoneController,
+                          validator: (text) {
+                            if (text!.trim() == "") {
+                              return "Please Enter Your Phone";
+                            }
+                            return null;
+                          },
+                          textInputAction: TextInputAction.next,
+                          decoration: InputDecoration(
+                            hintText: 'Phone',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16),
+                                borderSide:
+                                    BorderSide(color: Color(0xFF000A32))),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16),
+                                borderSide:
+                                    BorderSide(color: Color(0xFF000A32))),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        DropdownButton<ServiceProviderCategories>(
+                          value: selectedcategory,
+                          items: categories
+                              .map((cat) =>
+                                  DropdownMenuItem<ServiceProviderCategories>(
+                                      value: cat,
+                                      child: Row(
+                                        children: [Text(cat.name)],
+                                      )))
+                              .toList(),
+                          onChanged: (category) {
+                            if (category == null) {
+                              return;
+                            } else {
+                              selectedcategory = category;
+                            }
+                            setState(() {});
+                          },
+                        ),
+                        TextButton(
+                          onPressed: () async {
+                            final results = await FilePicker.platform.pickFiles(
+                              allowMultiple: false,
+                              type: FileType.custom,
+                              allowedExtensions: ['png', 'jpg'],
+                            );
 
-                                TextButton(
-                                  onPressed: () async {
-                                    final results = await FilePicker.platform.pickFiles(
-                                      allowMultiple: false,
-                                      type: FileType.custom,
-                                      allowedExtensions: ['png', 'jpg'],
-                                    );
-
-                                    if (results == null) {
-                                      ScaffoldMessenger.of(context).showSnackBar(
-                                        const SnackBar(
-                                          content: Text('No Image Selected'),
-                                        ),
-                                      );
-
-                                      return null;
-                                    }
-
-                                    final path = results.files.single.path!;
-                                    final fileName = results.files.single.name;
-                                    imageURL = results.files.first.path;
-                                    final bytes=File(_image!.path).readAsBytesSync();
-                                    String img64=base64Encode(bytes);
-                                    storage
-                                        .uploadFile(path, fileName)
-                                        .then((value) => print('Done'));
-                                    setState(() {
-                                      imageURL=img64;
-                                    });
-                                  },
-                                  child: Text('Add Image'),
-                                  style: TextButton.styleFrom(
-                                      primary: Color(0xFF000A32),
-                                      textStyle:
-                                      TextStyle(fontSize: 15, color: Colors.white),
-                                      alignment: Alignment.bottomLeft),
+                            if (results == null) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('No Image Selected'),
                                 ),
-                                imageURL != null
-                                    ? Image.file(File(imageURL!))
-                                    : Container(),
-                                SizedBox(
-                                  height: 180,
-                                ),
-                                ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.pushReplacementNamed(
-                                          context, Thanks.routeName);
+                              );
 
-                                      ValidateForm();
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Color(0xFF000A32)),
-                                    child: Text(
-                                      'Update',
-                                      style:
-                                      TextStyle(fontSize: 18, color: Colors.white),
-                                    )),
-                              ],
-                            ))),
+                              return null;
+                            }
+
+                            final path = results.files.single.path!;
+                            final fileName = results.files.single.name;
+                            imageURL = results.files.first.path;
+                            final bytes = File(_image!.path).readAsBytesSync();
+                            String img64 = base64Encode(bytes);
+                            storage
+                                .uploadFile(path, fileName)
+                                .then((value) => print('Done'));
+                            setState(() {
+                              imageURL = img64;
+                            });
+                          },
+                          child: Text('Add Image'),
+                          style: TextButton.styleFrom(
+                              primary: Color(0xFF000A32),
+                              textStyle:
+                                  TextStyle(fontSize: 15, color: Colors.white),
+                              alignment: Alignment.bottomLeft),
+                        ),
+                        imageURL != null
+                            ? Image.file(File(imageURL!))
+                            : Container(),
+                        SizedBox(
+                          height: 180,
+                        ),
+                        ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushReplacementNamed(
+                                  context, Thanks.routeName);
+
+                              ValidateForm();
+                            },
+                            style: ElevatedButton.styleFrom(
+                                primary: Color(0xFF000A32)),
+                            child: Text(
+                              'Update',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
+                            )),
+                      ],
+                    ))),
                   )
                 ])),
           ])),
@@ -291,6 +316,7 @@ class _ProviderHomeScreenState
     if (formKey.currentState!.validate()) {
       viewModel.AddUptadesToDB(
         titleController.text,
+        addressController.text,
         descriptionController.text,
         selectedcategory.id,
         linkController.text,

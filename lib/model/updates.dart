@@ -3,6 +3,7 @@ class Updates {
 
   String id;
   String title;
+  String address;
   String description;
   String catId;
   String link;
@@ -12,6 +13,7 @@ class Updates {
   Updates(
       {this.id = "",
       required this.title,
+      required this.address,
       required this.description,
       required this.catId,
       required this.link,
@@ -22,6 +24,7 @@ class Updates {
       : this(
           id: jason["id"],
           title: jason["title"],
+          address: jason["address"],
           description: jason["description"],
           catId: jason["catId"],
           link: jason["link"],
@@ -33,6 +36,7 @@ class Updates {
     return {
       'id': id,
       'title': title,
+      'address': address,
       'description': description,
       'catId': catId,
       'link': link,

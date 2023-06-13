@@ -4,10 +4,11 @@ import 'package:grad/model/updates.dart';
 import 'package:grad/screens/home/service_home/provider_navigator.dart';
 
 class ProviderHomeViewModel extends BaseViewModel<ProviderHomeNavigator> {
-  void AddUptadesToDB(String title, String description, String catId,
-      String link, String phone, String imageURL) {
+  void AddUptadesToDB(String title,String address, String description, String catId,
+      String link, String phone, String imageURL,) {
     Updates updates = Updates(
         title: title,
+        address: address,
         description: description,
         catId: catId,
         link: link,
